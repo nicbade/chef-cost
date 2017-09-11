@@ -23,5 +23,30 @@
             </div>
             <button class="btn button-default" ng-click="pc.addProduct()">Submit</button>
         </form>
+        <div class="container">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Product #</th>
+                        <th>Vendor</th>
+                        <th>Price</th>
+                        <th>Units</th>
+                        <th>Unit Measure</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="product in pc.ProductService.product.list | filter:query | orderBy: 'product'">
+                        <td>{{product.product}}</td>
+                        <td>{{product.product_number}}</td>
+                        <td>{{product.vendor}}</td>
+                        <td>{{product.price | currency}}</td>
+                        <td>{{product.unit}}</td>
+                        <td>{{product.unit_measure}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>{{pc.ProductService.product.list}}</p>
+        </div>
     </div>
 </div>

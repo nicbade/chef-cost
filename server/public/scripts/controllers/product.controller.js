@@ -8,7 +8,7 @@ myApp.controller('ProductController', function(ProductService) {
     self.addProduct = function() {
         console.log('addproduct button was clicked', self.newProduct);
         ProductService.addProduct(self.newProduct);
-    }
+    };
 
 
 });
