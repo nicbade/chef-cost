@@ -1,9 +1,11 @@
-<div ng-include="'views/partials/nav.html'"></div>
 <div class="container">
 
     <h1 id="welcome" class="lead">Welcome, {{uc.userObject.userName}}!</h1>
     <div class="row">
-        <button ng-click="uc.addRecipe()" class="btn btn-default">Add Recipe</button>
+        <!-- <a href="#!addRecipe"><h4>Add Recipe</h4></a> -->
+        <a href="#/addProduct">
+            <h4>Add Product</h4>
+        </a>
     </div>
     <button class="btn btn-default" ng-click="uc.userService.logout()">Log Out</button>
 </div>
