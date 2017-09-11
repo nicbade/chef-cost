@@ -4,7 +4,12 @@ myApp.controller('UserController', function(UserService) {
     self.userService = UserService;
     self.userObject = UserService.userObject;
 
-    self.addRecipe = function() {
+    self.addProduct = () => {
+        console.log('addProduct button was clicked');
+    }
+    self.addRecipe = () => {
         console.log('addRecipe button was clicked');
     }
+
+
 });

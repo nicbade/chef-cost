@@ -1,0 +1,24 @@
+<div ng-include="'views/partials/nav.html'"></div>
+<div class="container">
+    <h2>Add Products</h2>
+    <form>
+        <input type="text" placeholder="Product" name="product">Product<br>
+        <input type="text" placeholder="Product Number" name="productNumber">Product Number<br>
+        <input type="number" placeholder="Price" name="price">Price<br>
+        <input type="text" placeholder="Case Size" name="vendor">Case Size<br>
+        <div class="dropdown">
+            <div class="form-group">
+                <label for="orderByColumn">Case measurement</label>
+                <select name="orderByColumn" id="orderByColumn" ng-model="vm.orderByColumn" class="form-control">
+                                <option id="pound">Pound</option>
+                                <option id="each">Ea</option>
+                                <option id="gallon">Gallon</option>
+                                <option id="quart">Quart</option>
+                                <option id="pint">Pint</option>
+                                <option id="ounce">Ounce</option>
+                            </select>
+            </div>
+        </div>
+        <button class="btn button-default">Submit</button>
+    </form>
+</div>
