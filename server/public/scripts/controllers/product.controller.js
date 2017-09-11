@@ -1,7 +1,11 @@
-myApp.controller('ProductController', (ProductService) => {
+myApp.controller('ProductController', function(ProductService) {
     console.log('ProductController created');
-    let self = this;
+    var self = this;
     self.ProductService = ProductService;
+    self.newProduct = {};
 
-
+    self.addProduct = function() {
+        console.log('addproduct button was clicked', self.newProduct);
+        ProductService.addProduct(self.newProduct);
+    }
 });
