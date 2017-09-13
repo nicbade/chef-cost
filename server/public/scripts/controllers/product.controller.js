@@ -10,5 +10,7 @@ myApp.controller('ProductController', function(ProductService) {
         ProductService.addProduct(self.newProduct);
     };
 
-
+    self.deleteProduct = function(productId) {
+        ProductService.deleteProduct(productId);
+    };
 });
