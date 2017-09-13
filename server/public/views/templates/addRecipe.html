@@ -1,0 +1,14 @@
+<div ng-include="'views/partials/nav.html'"></div>
+<div class="container">
+    <h3>Add Recipes</h3>
+    <div ng-controller="RecipeController as rc">
+        <form>
+            <input type="text" placeholder="Recipe Name" name="recipe" ng-model="rc.newRecipe.name">
+
+
+        </form>
+        <button class="btn button-default" ng-click="rc.addRecipe()">Submit</button>
+
+
+    </div>
+</div>

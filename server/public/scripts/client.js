@@ -39,6 +39,14 @@ myApp.config(function($routeProvider, $locationProvider) {
                     return UserService.getuser();
                 }
             }
+        }).when('/addRecipe', {
+            templateUrl: '/views/templates/addRecipe.html',
+            controller: 'RecipeController as rc',
+            resolve: {
+                getuser: function(UserService) {
+                    return UserService.getuser();
+                }
+            }
         })
         .otherwise({
             redirectTo: '/home'
