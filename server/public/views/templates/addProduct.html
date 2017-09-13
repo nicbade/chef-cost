@@ -27,6 +27,11 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
+                        <th>
+                            <input type="text" ng-model="searchBox" placeholder="Search">
+                        </th>
+                    </tr>
+                    <tr>
                         <th>Product</th>
                         <th>Product #</th>
                         <th>Vendor</th>
@@ -35,20 +40,20 @@
                         <th>Unit Measure</th>
                     </tr>
                 </thead>
+
                 <tbody>
-                    <tr ng-repeat="product in pc.ProductService.product.list | filter:query | orderBy: 'product'">
+                    <tr ng-repeat="product in pc.ProductService.product.list | filter:query | filter: searchBox | orderBy: 'product'">
                         <td>{{product.product}}</td>
                         <td>{{product.product_number}}</td>
                         <td>{{product.vendor}}</td>
                         <td>{{product.price | currency}}</td>
                         <td>{{product.unit}}</td>
                         <td>{{product.unit_measure}}</td>
-                        <td><button>Edit</button></td>
+                        <td><button class="btn btn-xs btn-info" ng-click="pc.openEdit(product); pc.currentProduct = product">Edit</button></td>
                         <td><button class="btn btn-xs btn-danger" ng-click="pc.deleteProduct(product.id)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>
-            <p>{{pc.ProductService.product.list}}</p>
         </div>
     </div>
 </div>

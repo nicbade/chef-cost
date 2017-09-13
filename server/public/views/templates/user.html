@@ -3,8 +3,11 @@
     <h1 id="welcome" class="lead">Welcome, {{uc.userObject.userName}}!</h1>
     <div class="row">
         <!-- <a href="#!addRecipe"><h4>Add Recipe</h4></a> -->
-        <a href="#/addProduct">
+        <a href="#/addProduct" class="col-md-3">
             <h4>Add Product</h4>
+        </a>
+        <a href="#/addRecipe" class="col-md-3">
+            <h4>Add Recipe</h4>
         </a>
     </div>
     <button class="btn btn-default" ng-click="uc.userService.logout()">Log Out</button>

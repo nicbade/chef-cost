@@ -10,6 +10,9 @@ var indexRouter = require('./routes/index.router');
 var userRouter = require('./routes/user.router');
 var registerRouter = require('./routes/register.router');
 var addProduct = require('./routes/addProduct.router');
+var addRecipe = require('./routes/addRecipe.router');
+
+// PORT
 var port = process.env.PORT || 5000;
 
 // Body parser middleware
@@ -30,6 +33,7 @@ app.use(passport.session());
 app.use('/register', registerRouter);
 app.use('/user', userRouter);
 app.use('/addProduct', addProduct);
+app.use('/addRecipe', addRecipe);
 
 // Catch all bucket, must be last!
 app.use('/', indexRouter);
