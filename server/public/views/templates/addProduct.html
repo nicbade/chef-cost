@@ -43,6 +43,8 @@
                         <td>{{product.price | currency}}</td>
                         <td>{{product.unit}}</td>
                         <td>{{product.unit_measure}}</td>
+                        <td><button>Edit</button></td>
+                        <td><button class="btn btn-xs btn-danger" ng-click="pc.deleteProduct(product.id)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>

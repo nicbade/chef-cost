@@ -49,4 +49,27 @@ router.get('/', function(req, res) {
     }); // end pool connect
 }); // end get 
 
+router.delete('/:id', function(req, res) {
+    var productId = req.params.id;
+    console.log('product delete was hit!');
+    pool.connect(function(errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            // when connecting to database failed
+            console.log('Error connecting to database', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            // when connecting to database worked!
+            client.query('DELETE FROM product WHERE id=$1;', [productId],
+                function(errorMakingQuery, result) {
+                    done();
+                    if (errorMakingQuery) {
+                        console.log('Error making database query', errorMakingQuery);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(200);
+                    }
+                });
+        }
+    });
+});
 module.exports = router;

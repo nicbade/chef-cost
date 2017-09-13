@@ -20,4 +20,10 @@ myApp.service('ProductService', ['$http', function($http) {
         });
     };
 
+    self.deleteProduct = function(productId) {
+        // console.log('deleteProduct hit', productId);
+        $http.delete('/addProduct/' + productId).then(function(response) {
+            self.getProduct();
+        });
+    };
 }]);
