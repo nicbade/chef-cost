@@ -3,12 +3,40 @@
     <h3>Add Recipes</h3>
     <div ng-controller="RecipeController as rc">
         <form>
-            <input type="text" placeholder="Recipe Name" name="recipe" ng-model="rc.newRecipe.name">
-
-
+            <div class="form-group">
+                <input class="form-control col-md-3" type="text" placeholder="Recipe Name" name="recipe" ng-model="rc.newRecipe.name">
+            </div>
+            <div class="dropdown">
+                <div class="form-group">
+                    <label for="recipeType">Recipe Type</label>
+                    <select name="recipeType" id="recipeType" class="form-control col-md-3" ng-model="rc.newRecipe.type">
+                         <option id="pound" ng-model="rc.newRecipe.type">Appetizer</option>
+                         <option id="each" ng-model="rc.newRecipe.type">Entree</option>
+                         <option id="gallon" ng-model="rc.newRecipe.type">Snack</option>
+                         <option id="quart" ng-model="rc.newRecipe.type">Dessert</option>
+                         <option id="pint" ng-model="rc.newRecipe.type">Cocktail</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <input class="form-control col-md-3" type="number" placeholder="Recipe Yield" name="yield" ng-model="rc.newRecipe.yield">
+            </div>
+            <div class="form-group">
+                <label for="yieldType">Yield Measure</label>
+                <select name="yieldType" id="yieldType" class="form-control col-md-3" ng-model="rc.newRecipe.yield_amount">
+                         <option id="gallon" ng-model="rc.newRecipe.yield_amount">Gallon</option>
+                         <option id="quart" ng-model="rc.newRecipe.yield_amount">Quart</option>
+                         <option id="pint" ng-model="rc.newRecipe.yield_amount">Pint</option>
+                         <option id="cup" ng-model="rc.newRecipe.yield_amount">Cup</option>
+                         <option id="tablespoon" ng-model="rc.newRecipe.yield_amount">Tbsp</option>
+                         <option id="teaspoon" ng-model="rc.newRecipe.yield_amount">tsp</option>
+                         <option id="ounce" ng-model="rc.newRecipe.yield_amount">Ounce</option>
+                         <option id="each" ng-model="rc.newRecipe.yield_amount">Each</option>
+                        </select>
+            </div>
         </form>
-        <button class="btn button-default" ng-click="rc.addRecipe()">Submit</button>
-
-
+        <div>
+            <a href="#/recipe"><button class="btn button-default" ng-click="rc.addRecipe()">Submit</button></a>
+        </div>
     </div>
 </div>
