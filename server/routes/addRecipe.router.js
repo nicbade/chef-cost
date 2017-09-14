@@ -71,4 +71,28 @@ router.delete('/:id', function(req, res) {
         }
     });
 });
+
+router.put('/:id', function(req, res) {
+    var recipeId = req.params.id;
+    console.log('message put was hit!', req.body);
+    pool.connect(function(errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            // when connecting to database failed
+            console.log('Error connecting to database', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            // when connecting to database worked!
+            client.query('UPDATE recipe SET name=$1, type=$2, yield=$3, yield_amount=$4 WHERE id=$5;', [req.body.name, req.body.type, req.body.yield, req.body.yield_amount, recipeId],
+                function(errorMakingQuery, result) {
+                    done();
+                    if (errorMakingQuery) {
+                        console.log('Error making database query', errorMakingQuery);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(200);
+                    }
+                });
+        }
+    });
+});
 module.exports = router;

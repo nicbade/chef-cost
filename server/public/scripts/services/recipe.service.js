@@ -24,4 +24,11 @@ myApp.service('RecipeService', ['$http', function($http) {
             self.getRecipe();
         });
     };
+
+    self.updateRecipe = function(recipeId) {
+        console.log('updateRecipe hit', recipeId);
+        $http.put('/addRecipe/' + recipeId.id, recipeId).then(function(response) {
+            self.getRecipe();
+        });
+    };
 }]);

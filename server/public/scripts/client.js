@@ -16,6 +16,8 @@ myApp.config(function($routeProvider, $locationProvider) {
         .when('/user', {
             templateUrl: '/views/templates/user.html',
             controller: 'RecipeController as rc',
+            controller: 'UserController as uc',
+            controller: 'ProductController as pc',
             resolve: {
                 getuser: function(UserService) {
                     return UserService.getuser();

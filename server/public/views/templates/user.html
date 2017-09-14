@@ -20,18 +20,48 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="recipe in rc.RecipeService.recipe.list | filter:query | filter: searchBox | orderBy: 'name' | limitTo: 3">
-                    <td>{{recipe.name}}</td>
-                    <td>{{recipe.type}}</td>
-                    <td>{{recipe.yield}}</td>
-                    <td>{{recipe.yield_amount}}</td>
-                    <!-- <td><button class="btn btn-xs btn-info" ng-click="pc.openEdit(product); pc.currentProduct = product">Edit</button></td> -->
+                <tr ng-repeat="recipe in rc.RecipeService.recipe.list | filter:query | filter: searchBox | orderBy: 'name' | limitTo: 5">
+                    <td><input ng-model="recipe.name"></td>
+                    <td><input ng-model="recipe.type"></td>
+                    <td><input ng-model="recipe.yield"></td>
+                    <td><input ng-model="recipe.yield_amount"></td>
+                    <td><button class="btn btn-xs btn-info" ng-click="rc.updateRecipe(recipe)">Save</button></td>
                     <td><button class="btn btn-xs btn-danger" ng-click="rc.deleteRecipe(recipe.id)">Delete</button></td>
                 </tr>
             </tbody>
     </div>
+    <!-- <div class="container">
+        <table class="table table-striped col-md-6 col-xs-12" ng-controller="ProductController as pc">
+            <thead>
+                <tr>
+                    <th>
+                        <input type="text" ng-model="searchBox" placeholder="Search Products">
+                    </th>
+                </tr>
+                <tr>
+                    <th>Product</th>
+                    <th>Product #</th>
+                    <th>Price</th>
+                    <th>Vendor</th>
+                    <th>Unit/CS</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="product in pc.ProductService.product.list | filter:query | filter: searchBox | orderBy: 'product' | limitTo: 3">
+                    <td>{{product.product_number}}</td>
+                    <td>{{product.vendor}}</td>
+                    <td>{{product.price | currency}}</td>
+                    <td>{{product.unit}}</td>
+                    <td>{{product.unit_measure}}</td>
+                    <!-- <td><button class="btn btn-xs btn-info" ng-click="pc.openEdit(product); pc.currentProduct = product">Edit</button></td> -->
+    <!-- <td><button class="btn btn-xs btn-danger" ng-click="pc.deleteProduct(product.id)">Delete</button></td> -->
+    <!-- </tr> -->
+    <!-- </tbody>
+    </div> -->
 
 
 </div>
-<button class="btn btn-default" ng-click="uc.userService.logout()">Log Out</button>
+<div>
+    <button class="btn btn-default" ng-click="uc.userService.logout()">Log Out</button>
 </div>
