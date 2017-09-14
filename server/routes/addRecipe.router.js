@@ -48,4 +48,27 @@ router.get('/', function(req, res) {
     }); // end pool connect
 }); // end get
 
+router.delete('/:id', function(req, res) {
+    var recipeId = req.params.id;
+    console.log('recipe delete was hit!', recipeId);
+    pool.connect(function(errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            // when connecting to database failed
+            console.log('Error connecting to database', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            // when connecting to database worked!
+            client.query('DELETE FROM recipe WHERE id=$1;', [recipeId],
+                function(errorMakingQuery, result) {
+                    done();
+                    if (errorMakingQuery) {
+                        console.log('Error making database query', errorMakingQuery);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(200);
+                    }
+                });
+        }
+    });
+});
 module.exports = router;

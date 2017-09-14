@@ -17,4 +17,11 @@ myApp.service('RecipeService', ['$http', function($http) {
             self.recipe.list = response.data;
         });
     };
+
+    self.deleteRecipe = function(recipeId) {
+        console.log('deleteRecipe hit', recipeId);
+        $http.delete('/addRecipe/' + recipeId).then(function(response) {
+            self.getRecipe();
+        });
+    };
 }]);

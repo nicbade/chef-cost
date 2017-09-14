@@ -4,9 +4,15 @@ myApp.controller('RecipeController', function(RecipeService) {
     self.RecipeService = RecipeService;
     self.newRecipe = {};
     RecipeService.getRecipe();
+
+    // adds recipe to db
     self.addRecipe = function() {
         console.log('addRecipe button was clicked', self.newRecipe);
         RecipeService.addRecipe(self.newRecipe);
     };
-
+    // deletes recipe from db
+    self.deleteRecipe = function(recipeId) {
+        console.log('deleteRecipe button clicked', recipeId)
+        RecipeService.deleteRecipe(recipeId);
+    };
 });
