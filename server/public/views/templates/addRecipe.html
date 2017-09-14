@@ -1,10 +1,10 @@
-<div ng-include="'views/partials/nav.html'"></div>
 <div class="container">
     <h3>Add Recipes</h3>
     <div ng-controller="RecipeController as rc">
         <form>
             <div class="form-group">
-                <input class="form-control col-md-3" type="text" placeholder="Recipe Name" name="recipe" ng-model="rc.newRecipe.name">
+                <label for="recipe">Recipe Name</label>
+                <input class="form-control col-md-3" type="text" placeholder="Recipe Name" id="recipe" ng-model="rc.newRecipe.name">
             </div>
             <div class="dropdown">
                 <div class="form-group">
@@ -19,7 +19,8 @@
                 </div>
             </div>
             <div class="form-group">
-                <input class="form-control col-md-3" type="number" placeholder="Recipe Yield" name="yield" ng-model="rc.newRecipe.yield">
+                <label for="yield">Yield</label>
+                <input class="form-control col-md-3" type="number" placeholder="Recipe Yield" id="yield" ng-model="rc.newRecipe.yield">
             </div>
             <div class="form-group">
                 <label for="yieldType">Yield Measure</label>
@@ -32,11 +33,15 @@
                          <option id="teaspoon" ng-model="rc.newRecipe.yield_amount">tsp</option>
                          <option id="ounce" ng-model="rc.newRecipe.yield_amount">Ounce</option>
                          <option id="each" ng-model="rc.newRecipe.yield_amount">Each</option>
-                        </select>
+                 </select>
             </div>
-        </form>
-        <div>
-            <a href="#/recipe"><button class="btn button-default" ng-click="rc.addRecipe()">Submit</button></a>
-        </div>
+            <div class="form-group">
+                <button class="btn button-default" ng-click="rc.addRecipe()">Submit</button>
+            </div>
     </div>
+</div>
+
+</form>
+
+</div>
 </div>
