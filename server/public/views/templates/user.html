@@ -1,14 +1,47 @@
 <div class="container">
 
     <h1 id="welcome" class="lead">Welcome, {{uc.userObject.userName}}!</h1>
+    <!-- add recipe button .. takes you to addRecipe.html -->
+
     <div class="row">
-        <!-- <a href="#!addRecipe"><h4>Add Recipe</h4></a> -->
-        <a href="#/addProduct" class="col-md-3">
-            <h4>Add Product</h4>
+        <span>
+            <a href="#/addRecipe" class="col-md-6 colxs-6">
+            Add Recipe
         </a>
-        <a href="#/addRecipe" class="col-md-3">
-            <h4>Add Recipe</h4>
+        <a href="#/addProduct" class="col-md-6 colxs-6">
+            Add Product
         </a>
+    </span>
     </div>
-    <button class="btn btn-default" ng-click="uc.userService.logout()">Log Out</button>
+    <!-- recipes display on dom -->
+    <div class="container">
+        <table class="table table-striped col-md-6 col-xs-12" ng-controller="RecipeController as rc">
+            <thead>
+                <tr>
+                    <th>
+                        <input type="text" ng-model="searchBox" placeholder="Search">
+                    </th>
+                </tr>
+                <tr>
+                    <th>Recipe Name</th>
+                    <th>Type</th>
+                    <th>Yield</th>
+                    <th>Yield Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="recipe in rc.RecipeService.recipe.list | filter:query | filter: searchBox | orderBy: 'name' | limitTo: 3">
+                    <td>{{recipe.name}}</td>
+                    <td>{{recipe.type}}</td>
+                    <td>{{recipe.yield}}</td>
+                    <td>{{recipe.yield_amount}}</td>
+                    <!-- <td><button class="btn btn-xs btn-info" ng-click="pc.openEdit(product); pc.currentProduct = product">Edit</button></td> -->
+                    <td><button class="btn btn-xs btn-danger" ng-click="pc.deleteProduct(product.id)">Delete</button></td>
+                </tr>
+            </tbody>
+    </div>
+
+
+</div>
+<button class="btn btn-default" ng-click="uc.userService.logout()">Log Out</button>
 </div>

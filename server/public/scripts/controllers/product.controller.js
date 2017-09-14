@@ -3,27 +3,25 @@ myApp.controller('ProductController', function(ProductService) {
     var self = this;
     self.ProductService = ProductService;
     self.newProduct = {};
-    self.productToEdit = {};
-    ProductService.getProduct();
+    // self.productToEdit = {};
 
-    self.openEdit = function(product) {
-        product.editMode = true;
+    myApp.run(function(editableOptions) {
+        editableOptions.theme = 'bs3';
+    });
 
-        self.productToEdit = {
-            id: product.id,
-            product_number: product_number,
-            vendor: vendor,
-            price: price,
-            unit: unit,
-            unit_measure
-        }
+    self.product = {
+        id: 'product.id',
+        product_number: 'product_number',
+        vendor: 'vendor',
+        price: 'price',
+        unit: 'unit',
+        unit_measure: 'unit_measure'
+    };
 
-    }
-
-    self.cancelEdit = function(product) {
-        product.editMode = false;
-        self.productToEdit = {};
-    }
+    // self.cancelEdit = function(product) {
+    //     product.editMode = false;
+    //     self.productToEdit = {};
+    // }
 
     self.addProduct = function() {
         console.log('addproduct button was clicked', self.newProduct);
@@ -34,13 +32,13 @@ myApp.controller('ProductController', function(ProductService) {
         ProductService.deleteProduct(productId);
     };
 
-    self.editProduct = function(productId) {
-        ProductService.editProduct(productId);
+    // self.editProduct = function(productId) {
+    //     ProductService.editProduct(productId);
 
-        product.editMode = false;
-        self.productToEdit = {};
-        self.getProduct();
-    };
+    //     product.editMode = false;
+    //     self.productToEdit = {};
+    //     self.getProduct();
+    // };
 
 
 
