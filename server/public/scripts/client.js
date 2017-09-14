@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute']);
+var myApp = angular.module('myApp', ['ngRoute', 'xeditable']);
 
 /// Routes ///
 myApp.config(function($routeProvider, $locationProvider) {
@@ -15,7 +15,7 @@ myApp.config(function($routeProvider, $locationProvider) {
         })
         .when('/user', {
             templateUrl: '/views/templates/user.html',
-            controller: 'UserController as uc',
+            controller: 'RecipeController as rc',
             resolve: {
                 getuser: function(UserService) {
                     return UserService.getuser();
