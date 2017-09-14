@@ -1,1 +1,14 @@
 <div ng-include="'views/partials/nav.html'"></div>
+<div class="container">
+    <div ng-controller="RecipeController as rc">
+        {{rc}}
+        <div ng-repeat="recipe in rc.RecipeService.recipe.list">
+            <div class="row">
+                <h5>{{recipe.name}}</h5>
+                <p>type: {{recipe.type}} yield: {{recipe.yield}} {{recipe.yield_amount}}</p>
+                <!-- <p>{{recipe.yield}}</p>
+                <p>{{recipe.yield_amount}}</p> -->
+            </div>
+        </div>
+    </div>
+</div>
