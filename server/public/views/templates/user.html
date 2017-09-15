@@ -1,7 +1,7 @@
 <div class="container">
-
-    <h1 id="welcome" class="lead">Welcome, {{uc.userObject.userName}}!</h1>
-
+    <div ng-controller="UserController as uc">
+        <h1 id="welcome" class="lead">Welcome, {{uc.userObject.userName}}!</h1>
+    </div>
     <!-- recipes display on dom -->
     <div class="container">
         <table class="table table-striped col-md-6 col-xs-12" ng-controller="RecipeController as rc">
@@ -17,10 +17,11 @@
                     <th>Yield</th>
                     <th>Yield Amount</th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="recipe in rc.RecipeService.recipe.list | filter:query | filter: searchBox | orderBy: 'name' | limitTo: 5">
+                <tr ng-repeat="recipe in rc.RecipeService.recipe.list | filter:query | filter: searchBox | orderBy: 'name'">
                     <td><input ng-model="recipe.name"></td>
                     <td><input ng-model="recipe.type"></td>
                     <td><input ng-model="recipe.yield"></td>
@@ -62,6 +63,6 @@
 
 
 </div>
-<div>
+<div ng-controller="UserController as uc">
     <button class="btn btn-default" ng-click="uc.userService.logout()">Log Out</button>
 </div>

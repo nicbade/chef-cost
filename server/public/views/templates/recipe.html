@@ -1,12 +1,46 @@
-<div ng-include="'views/partials/nav.html'"></div>
 <div class="container">
     <div ng-controller="RecipeController as rc">
-        {{rc}}
-        <div ng-repeat="recipe in rc.RecipeService.recipe.list">
-            <div class="row">
-                <h5>{{recipe.name}}</h5>
-                <p>type: {{recipe.type}} yield: {{recipe.yield}} {{recipe.yield_amount}}</p>
+        <div class="row" ng-controller="ProductController as pc">
+            <div ng-repeat="product in pc.ProductService.product.list | filter: searchBox | limitTo: 1">
+                <label for="ingredient">Add Ingredient</label>
+                <div class="container">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <input type="text" ng-model="searchBox" placeholder="Search Products">
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Product</th>
+                                <th>Product #</th>
+                                <th>Vendor</th>
+                                <th>Price</th>
+                                <th>Units</th>
+                                <th>Unit Measure</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="product in pc.ProductService.product.list | filter:query | filter: searchBox | orderBy: 'product' | limitTo:1">
+                                <td><a href="#" editable-product="product.product">{{product.product}}</a></td>
+                                <td>{{product.product_number}}</td>
+                                <td>{{product.vendor}}</td>
+                                <td>{{product.price | currency}}</td>
+                                <td>{{product.unit}}</td>
+                                <td>{{product.unit_measure}}</td>
+                                <td><button class="btn btn-xs btn-info" ng-click="pc.selectProduct(product)">Select</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+        </div>
+    </div>
+    <div ng-repeat="recipe in rc.RecipeService.recipe.list | orderBy: 'created_at':true | limitTo: 1">
+        <div class="row col-md-3">
+            <h4>{{recipe.name}}</h4>
+            <p>{{recipe.type}} </p>
+            <p> Yield: {{recipe.yield}} {{recipe.yield_amount}}</p>
         </div>
     </div>
 </div>

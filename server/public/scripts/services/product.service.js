@@ -29,5 +29,7 @@ myApp.service('ProductService', ['$http', function($http) {
 
     self.editProduct = function(productId) {
         console.log('editProduct hit', productId);
-    }
+    };
+
+
 }]);
