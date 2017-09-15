@@ -18,6 +18,7 @@
                                 <th>Price</th>
                                 <th>Units</th>
                                 <th>Unit Measure</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -36,11 +37,11 @@
             </div>
         </div>
     </div>
-    <div ng-repeat="recipe in rc.RecipeService.recipe.list | orderBy: 'created_at':true | limitTo: 1">
-        <div class="row col-md-3">
-            <h4>{{recipe.name}}</h4>
-            <p>{{recipe.type}} </p>
-            <p> Yield: {{recipe.yield}} {{recipe.yield_amount}}</p>
+    <div class="container rounded well">
+        {{rc.newRecipe}}
+        <h3>{{rc.newRecipe.name}}</h3>
+        <div>
+            <!-- products go here -->
         </div>
     </div>
 </div>

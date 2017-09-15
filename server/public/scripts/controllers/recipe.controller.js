@@ -1,10 +1,9 @@
 myApp.controller('RecipeController', function(RecipeService) {
     console.log('RecipeController created');
     var self = this;
-    self.RecipeService = RecipeService;
-    self.newRecipe = {};
-    RecipeService.getRecipe();
-
+    self.newRecipe = RecipeService.newRecipe;
+    self.RecipeService = RecipeService; // RecipeService.getRecipe();
+    // console.log(self.RecipeService);
     // adds recipe to db
     self.addRecipe = function() {
         console.log('addRecipe button was clicked', self.newRecipe);
