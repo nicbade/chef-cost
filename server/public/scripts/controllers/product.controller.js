@@ -4,41 +4,22 @@ myApp.controller('ProductController', function(ProductService) {
     self.ProductService = ProductService;
     self.newProduct = {};
     // self.productToEdit = {};
+    ProductService.getProduct();
 
-    myApp.run(function(editableOptions) {
-        editableOptions.theme = 'bs3';
-    });
-
-    self.product = {
-        id: 'product.id',
-        product_number: 'product_number',
-        vendor: 'vendor',
-        price: 'price',
-        unit: 'unit',
-        unit_measure: 'unit_measure'
-    };
-
-    // self.cancelEdit = function(product) {
-    //     product.editMode = false;
-    //     self.productToEdit = {};
-    // }
-
+    // adds new products to the db
     self.addProduct = function() {
         console.log('addproduct button was clicked', self.newProduct);
         ProductService.addProduct(self.newProduct);
     };
-
+    // deletes product from db
     self.deleteProduct = function(productId) {
         ProductService.deleteProduct(productId);
     };
 
-    // self.editProduct = function(productId) {
-    //     ProductService.editProduct(productId);
-
-    //     product.editMode = false;
-    //     self.productToEdit = {};
-    //     self.getProduct();
-    // };
+    self.selectProduct = function(product) {
+        console.log('selectProduct button was clicked', product);
+        ProductService.updateProduct(product);
+    };
 
 
 

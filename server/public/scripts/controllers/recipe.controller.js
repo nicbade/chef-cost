@@ -15,9 +15,11 @@ myApp.controller('RecipeController', function(RecipeService) {
         console.log('deleteRecipe button clicked', recipeId)
         RecipeService.deleteRecipe(recipeId);
     };
-
+    // updates recipe to db
     self.updateRecipe = function(recipeId) {
         console.log('updateRecipe button was clicked', recipeId);
         RecipeService.updateRecipe(recipeId);
     }
+
+
 });

@@ -2,12 +2,12 @@
     <h3>Add Recipes</h3>
     <div ng-controller="RecipeController as rc">
         <form>
-            <div class="form-group">
+            <div class="form-group row">
                 <label for="recipe">Recipe Name</label>
                 <input class="form-control col-md-3" type="text" placeholder="Recipe Name" id="recipe" ng-model="rc.newRecipe.name">
             </div>
             <div class="dropdown">
-                <div class="form-group">
+                <div class="form-group row">
                     <label for="recipeType">Recipe Type</label>
                     <select name="recipeType" id="recipeType" class="form-control col-md-3" ng-model="rc.newRecipe.type">
                          <option id="pound" ng-model="rc.newRecipe.type">Appetizer</option>
@@ -18,11 +18,11 @@
                     </select>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <label for="yield">Yield</label>
                 <input class="form-control col-md-3" type="number" placeholder="Recipe Yield" id="yield" ng-model="rc.newRecipe.yield">
             </div>
-            <div class="form-group">
+            <div class="form-group row">
                 <label for="yieldType">Yield Measure</label>
                 <select name="yieldType" id="yieldType" class="form-control col-md-3" ng-model="rc.newRecipe.yield_amount">
                          <option id="gallon" ng-model="rc.newRecipe.yield_amount">Gallon</option>
@@ -35,13 +35,9 @@
                          <option id="each" ng-model="rc.newRecipe.yield_amount">Each</option>
                  </select>
             </div>
-            <div class="form-group">
-                <button class="btn button-default" ng-click="rc.addRecipe()">Submit</button>
-            </div>
+
+            <a href="#/recipe"><button class="btn button-default" ng-click="rc.addRecipe()">Submit</button></a>
+
+        </form>
     </div>
-</div>
-
-</form>
-
-</div>
 </div>
