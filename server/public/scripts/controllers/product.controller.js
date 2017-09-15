@@ -15,10 +15,10 @@ myApp.controller('ProductController', function(ProductService) {
     self.deleteProduct = function(productId) {
         ProductService.deleteProduct(productId);
     };
-
+    // adds a product to a recipe
     self.selectProduct = function(product) {
         console.log('selectProduct button was clicked', product);
-        ProductService.updateProduct(product);
+        // ProductService.updateProduct(product);
     };
 
 
