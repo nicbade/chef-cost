@@ -16,7 +16,6 @@ myApp.service('RecipeService', ['$http', function($http) {
         //     console.log('service post reponse: ', response);
         // self.getRecipe();
         // });
-
     };
 
     self.getRecipe = function() {

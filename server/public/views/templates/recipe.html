@@ -35,13 +35,20 @@
                     </table>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="container rounded well">
-        {{rc.newRecipe}}
-        <h3>{{rc.newRecipe.name}}</h3>
-        <div>
-            <!-- products go here -->
+
+
+            <div class="container rounded well">
+                <div class="row justify-content-md-center">
+                    <!-- RECIPE INFO FROM ADDRECIPE HTML -->
+                    <div id="recipeName" class="col">{{rc.newRecipe.name}}</div>
+                    <div class="col">{{rc.newRecipe.type}}</div>
+                    <div class="col">{{rc.newRecipe.yield}} {{rc.newRecipe.yield_amount}}</div>
+                </div>
+                <!-- products go here -->
+                <div>
+                    {{pc.recipeProduct.product}}
+                </div>
+            </div>
         </div>
     </div>
 </div>
