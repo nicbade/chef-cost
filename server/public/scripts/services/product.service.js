@@ -3,6 +3,13 @@ myApp.service('ProductService', ['$http', function($http) {
     var self = this;
 
     self.product = { list: [] };
+    self.recipeProduct = {
+        product: '',
+        price: '',
+        vendor: '',
+        unit: '',
+        unit_measure: ''
+    };
 
     // sending new product input to server
     self.addProduct = function(newProduct) {
@@ -31,5 +38,12 @@ myApp.service('ProductService', ['$http', function($http) {
         console.log('editProduct hit', productId);
     };
 
+    // item selected from recipe.html search and binded to recipe view
+    self.selectProduct = function(recipeProduct) {
+        console.log('selectProduct hit', recipeProduct);
+        self.recipeProduct = recipeProduct;
+        console.log(self.recipeProduct);
+
+    };
 
 }]);

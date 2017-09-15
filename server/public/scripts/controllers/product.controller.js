@@ -2,8 +2,8 @@ myApp.controller('ProductController', function(ProductService) {
     console.log('ProductController created');
     var self = this;
     self.ProductService = ProductService;
-    self.newProduct = {};
-    // self.productToEdit = {};
+    self.recipeProduct = ProductService.recipeProduct;
+    console.log(self.recipeProduct);
     ProductService.getProduct();
 
     // adds new products to the db
@@ -18,7 +18,8 @@ myApp.controller('ProductController', function(ProductService) {
     // adds a product to a recipe
     self.selectProduct = function(product) {
         console.log('selectProduct button was clicked', product);
-        // ProductService.updateProduct(product);
+        ProductService.selectProduct(product);
+        console.log(self.recipeProduct);
     };
 
 
