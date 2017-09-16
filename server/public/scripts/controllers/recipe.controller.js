@@ -4,7 +4,7 @@ myApp.controller('RecipeController', function(RecipeService) {
     self.RecipeService = RecipeService;
     self.newRecipe = RecipeService.newRecipe;
 
-    // RecipeService.getRecipe();
+    RecipeService.getRecipe();
     // console.log(self.RecipeService);
     // adds recipe to db
     self.addRecipe = function() {
