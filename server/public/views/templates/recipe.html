@@ -23,7 +23,7 @@
                             <tr ng-repeat="product in pc.ProductService.product.list | filter:query | filter: searchBox | orderBy: 'product' | limitTo:1">
                                 <td><a href="#" editable-product="product.product">{{product.product}}</a></td>
                                 <td>{{product.vendor}}</td>
-                                <td><input type="number" placeholder="Amount"></td>
+                                <td><input type="number" id="amount" placeholder="Amount" ng-model="pc.newProduct.amount"></td>
                                 <td>
                                     <select name="caseMeasurement" id="caseMeasurement" class="form-control" ng-model="pc.newProduct.unitMeasure">
                                                      <option id="pound" ng-model="pc.newProduct.unitMeasure">Pound</option>
@@ -54,7 +54,7 @@
                 </div>
                 <!-- products go here -->
                 <div>
-                    {{pc.recipeProduct.product}}
+                    {{pc.recipeProduct.product}} {{pc.recipeProduct.amount}} {{pc.recipeProduct.unitMeasure}} {{pc.recipeProduct.cost_oz}}
                 </div>
             </div>
         </div>

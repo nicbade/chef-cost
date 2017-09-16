@@ -13,7 +13,7 @@ myApp.service('ProductService', ['$http', function($http) {
 
     // sending new product input to server
     self.addProduct = function(newProduct) {
-        // console.log(newProduct);
+        console.log(newProduct);
         $http.post('/addProduct', newProduct).then(function(response) {
             console.log('service post reponse: ', response);
             self.getProduct();

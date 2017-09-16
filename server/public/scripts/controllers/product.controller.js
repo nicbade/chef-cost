@@ -12,7 +12,9 @@ myApp.controller('ProductController', function(ProductService) {
         vendor: '',
         caseSize: '',
         unitMeasure: '',
-        cost_oz: ''
+        cost_oz: '',
+        amount: '',
+        created_at: ''
     };
 
     // adds new products to the db
@@ -20,6 +22,7 @@ myApp.controller('ProductController', function(ProductService) {
         console.log('addproduct button was clicked', self.newProduct);
         recipeConvert();
         ProductService.addProduct(self.newProduct);
+        self.newProduct = {};
     };
 
     // deletes product from db
@@ -36,12 +39,28 @@ myApp.controller('ProductController', function(ProductService) {
         console.log('recipeConvert called');
         var unit = self.newProduct
         console.log('unit.unitMeasure', unit.unitMeasure);
-        if ((unit.unitMeasure == 'pound')) {
+        if ((unit.unitMeasure == 'Pound')) {
             unit.cost_oz = unit.price / (unit.caseSize * 16);
-            self.newProduct.push(unit);
+        } else if ((unit.unitMeasure == 'Ea')) {
+            unit.cost_oz = unit.price / unit.caseSize;
+        } else if ((unit.unitMeasure == 'Gallon')) {
+            unit.cost_oz = unit.price / (unit.caseSize * 128);
+        } else if ((unit.unitMeasure == 'Quart')) {
+            unit.cost_oz = unit.price / (unit.caseSize * 32);
+        } else if ((unit.unitMeasure == 'Pint')) {
+            unit.cost_oz = unit.price / (unit.caseSize * 16);
+        } else if ((unit.unitMeasure == 'Cup')) {
+            unit.cost_oz = unit.price / (unit.caseSize * 8);
+        } else if ((unit.unitMeasure == 'Ounce')) {
+            unit.cost_oz = unit.price;
+        } else if ((unit.unitMeasure == 'Liter')) {
+            unit.cost_oz = unit.price / (unit.caseSize * 33.814);
+        } else if ((unit.unitMeasure == 'ml')) {
+            unit.cost_oz = unit.price / (unit.caseSize * 0.033814)
+        } else if ((unit.unitMeasure == 'Gram')) {
+            unit.cost_oz = unit.price / (unit.caseSize * 0.035274)
         }
-        // do I need to push this to the object?
-        console.log(unit.cost_oz);
+
     }
 
 });

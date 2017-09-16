@@ -12,10 +12,10 @@ myApp.service('RecipeService', ['$http', function($http) {
     self.addRecipe = function(newRecipe) {
         console.log(newRecipe);
         self.newRecipe = newRecipe;
-        // $http.post('/addRecipe', newRecipe).then(function(response) {
-        //     console.log('service post reponse: ', response);
-        // self.getRecipe();
-        // });
+        $http.post('/addRecipe', newRecipe).then(function(response) {
+            console.log('service post reponse: ', response);
+            self.getRecipe();
+        });
     };
 
     self.getRecipe = function() {
