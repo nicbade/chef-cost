@@ -2,7 +2,7 @@
     <div ng-controller="RecipeController as rc">
         <div class="row" ng-controller="ProductController as pc">
             <div ng-repeat="product in pc.ProductService.product.list | filter: searchBox | limitTo: 1">
-                <label for="ingredient">Add Ingredient</label>
+                <label for="ingredient">Add product to recipe</label>
                 <div class="container">
                     <table class="table table-striped">
                         <thead>
@@ -13,10 +13,8 @@
                             </tr>
                             <tr>
                                 <th>Product</th>
-                                <th>Product #</th>
                                 <th>Vendor</th>
-                                <th>Price</th>
-                                <th>Units</th>
+                                <th>Amount</th>
                                 <th>Unit Measure</th>
                                 <th></th>
                             </tr>
@@ -24,11 +22,21 @@
                         <tbody>
                             <tr ng-repeat="product in pc.ProductService.product.list | filter:query | filter: searchBox | orderBy: 'product' | limitTo:1">
                                 <td><a href="#" editable-product="product.product">{{product.product}}</a></td>
-                                <td>{{product.product_number}}</td>
                                 <td>{{product.vendor}}</td>
-                                <td>{{product.price | currency}}</td>
-                                <td>{{product.unit}}</td>
-                                <td>{{product.unit_measure}}</td>
+                                <td><input type="number" placeholder="Amount"></td>
+                                <td>
+                                    <select name="caseMeasurement" id="caseMeasurement" class="form-control" ng-model="pc.newProduct.unitMeasure">
+                                                     <option id="pound" ng-model="pc.newProduct.unitMeasure">Pound</option>
+                                                     <option id="each" ng-model="pc.newProduct.unitMeasure">Ea</option>
+                                                     <option id="gallon" ng-model="pc.newProduct.unitMeasure">Gallon</option>
+                                                     <option id="quart" ng-model="pc.newProduct.unitMeasure">Quart</option>
+                                                     <option id="pint" ng-model="pc.newProduct.unitMeasure">Pint</option>
+                                                     <option id="pint" ng-model="pc.newProduct.unitMeasure">Cup</option>
+                                                     <option id="pint" ng-model="pc.newProduct.unitMeasure">Tbsp</option>
+                                                     <option id="pint" ng-model="pc.newProduct.unitMeasure">tsp</option>
+                                                     <option id="ounce" ng-model="pc.newProduct.unitMeasure">Ounce</option>
+                                                </select>
+                                </td>
                                 <td><button class="btn btn-xs btn-info" ng-click="pc.selectProduct(product)">Select</button></td>
                             </tr>
                         </tbody>

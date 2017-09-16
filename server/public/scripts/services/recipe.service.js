@@ -1,7 +1,7 @@
 myApp.service('RecipeService', ['$http', function($http) {
     console.log('RecipeService loaded');
     var self = this;
-    // self.recipe = { list: [] };
+    self.recipe = { list: [] };
     self.newRecipe = {
         name: '',
         type: '',
