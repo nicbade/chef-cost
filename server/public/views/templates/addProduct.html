@@ -16,7 +16,11 @@
                      <option id="gallon" ng-model="pc.newProduct.unitMeasure">Gallon</option>
                      <option id="quart" ng-model="pc.newProduct.unitMeasure">Quart</option>
                      <option id="pint" ng-model="pc.newProduct.unitMeasure">Pint</option>
+                     <option id="cup" ng-model="pc.newProduct.unitMeasure">Cup</option>                     
                      <option id="ounce" ng-model="pc.newProduct.unitMeasure">Ounce</option>
+                     <option id="liter" ng-model="pc.newProduct.unitMeasure">Liter</option>
+                     <option id="ml" ng-model="pc.newProduct.unitMeasure">ml</option>
+                     <option id="gram" ng-model="pc.newProduct.unitMeasure">Gram</option>
                 </select>
                 </div>
             </div>
@@ -31,12 +35,13 @@
                         </div>
                     </tr>
                     <tr>
-                        <th> Product</th>
+                        <th>Product</th>
                         <th>Product #</th>
                         <th>Vendor</th>
                         <th>Price</th>
                         <th>Units</th>
                         <th>Unit Measure</th>
+                        <th>Cost Oz/Ea</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -50,6 +55,7 @@
                         <td>{{product.price | currency}}</td>
                         <td>{{product.unit}}</td>
                         <td>{{product.unit_measure}}</td>
+                        <td>{{product.cost_oz | currency}}</td>
                         <td><button class="btn btn-xs btn-info" ng-click="pc.openEdit(product); pc.currentProduct = product">Edit</button></td>
                         <td><button class="btn btn-xs btn-danger" ng-click="pc.deleteProduct(product.id)">Delete</button></td>
                     </tr>

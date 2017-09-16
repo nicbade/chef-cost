@@ -14,7 +14,7 @@ router.post('/', function(req, res) {
             res.sendStatus(500);
         } else {
             // when connecting to database worked aka HAPPYPATH!
-            client.query('INSERT INTO product (product, product_number, vendor, price, unit, unit_measure) VALUES ($1, $2, $3, $4, $5, $6);', [newProduct.product, newProduct.productNumber, newProduct.vendor, newProduct.price, newProduct.caseSize, newProduct.unitMeasure], function(errorMakingQuery, result) {
+            client.query('INSERT INTO product (product, product_number, vendor, price, unit, unit_measure,cost_oz) VALUES ($1, $2, $3, $4, $5, $6, $7);', [newProduct.product, newProduct.productNumber, newProduct.vendor, newProduct.price, newProduct.caseSize, newProduct.unitMeasure, newProduct.cost_oz], function(errorMakingQuery, result) {
                 done(); //needed
                 if (errorMakingQuery) {
                     console.log('Error making database query', errorMakingQuery);
