@@ -12,7 +12,9 @@ myApp.controller('ProductController', function(ProductService) {
         vendor: '',
         caseSize: '',
         unitMeasure: '',
-        cost_oz: ''
+        // cost_oz: '',
+        // amount: '',
+        // created_at: ''
     };
 
     // adds new products to the db
@@ -36,12 +38,11 @@ myApp.controller('ProductController', function(ProductService) {
         console.log('recipeConvert called');
         var unit = self.newProduct
         console.log('unit.unitMeasure', unit.unitMeasure);
-        if ((unit.unitMeasure == 'pound')) {
+        if ((unit.unitMeasure == 'Pound')) {
             unit.cost_oz = unit.price / (unit.caseSize * 16);
-            self.newProduct.push(unit);
         }
         // do I need to push this to the object?
-        console.log(unit.cost_oz);
+        // console.log(unit.cost_oz);
     }
 
 });
