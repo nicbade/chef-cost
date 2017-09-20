@@ -3,7 +3,6 @@ myApp.controller('ProductController', ['ProductService', 'RecipeService', '$rout
     var self = this;
     self.ProductService = ProductService;
     self.recipeProduct = ProductService.recipeProduct;
-    RecipeService.getDeets($routeParams.id);
     // console.log(self.recipeProduct);
     ProductService.getProduct();
     self.newProduct = {
