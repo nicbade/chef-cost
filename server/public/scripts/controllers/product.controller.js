@@ -18,6 +18,7 @@ myApp.controller('ProductController', ['ProductService', 'RecipeService', '$rout
         created_at: ''
     };
 
+    self.toggle = false;
     // adds new products to the db
     self.addProduct = function() {
         console.log('addproduct button was clicked', self.newProduct);
