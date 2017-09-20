@@ -1,8 +1,9 @@
-myApp.controller('RecipeController', function(RecipeService) {
+myApp.controller('RecipeController', ['RecipeService', '$routeParams', function(RecipeService, $routeParams) {
     console.log('RecipeController created');
     var self = this;
     self.RecipeService = RecipeService;
     self.newRecipe = RecipeService.newRecipe;
+    console.log('$routeParams ', $routeParams);
 
     RecipeService.getRecipe();
     // console.log(self.RecipeService);
@@ -23,4 +24,4 @@ myApp.controller('RecipeController', function(RecipeService) {
     }
 
 
-});
+}]);

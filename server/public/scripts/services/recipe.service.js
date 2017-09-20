@@ -2,6 +2,7 @@ myApp.service('RecipeService', ['$http', function($http) {
     console.log('RecipeService loaded');
     var self = this;
     self.recipe = { list: [] };
+    self.currentRecipe = { details: {} };
     self.newRecipe = {
         name: '',
         type: '',
@@ -29,6 +30,18 @@ myApp.service('RecipeService', ['$http', function($http) {
         console.log('deleteRecipe hit', recipeId);
         $http.delete('/addRecipe/' + recipeId).then(function(response) {
             self.getRecipe();
+        });
+    };
+
+    self.getDeets = function(recipeId) {
+        $http({
+            mehtod: 'GET',
+            url: '/addRecipe/recipe',
+            params: {
+                id: recipeId
+            }
+        }).then(function(response) {
+            self.currentRecipe.details = response.data;
         });
     };
 

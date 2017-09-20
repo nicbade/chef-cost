@@ -1,8 +1,9 @@
-myApp.controller('ProductController', function(ProductService) {
+myApp.controller('ProductController', ['ProductService', 'RecipeService', '$routeParams', function(ProductService, RecipeService, $routeParams) {
     console.log('ProductController created');
     var self = this;
     self.ProductService = ProductService;
     self.recipeProduct = ProductService.recipeProduct;
+    RecipeService.getDeets($routeParams.id);
     // console.log(self.recipeProduct);
     ProductService.getProduct();
     self.newProduct = {
@@ -17,6 +18,7 @@ myApp.controller('ProductController', function(ProductService) {
         created_at: ''
     };
 
+    self.toggle = false;
     // adds new products to the db
     self.addProduct = function() {
         console.log('addproduct button was clicked', self.newProduct);
@@ -52,7 +54,7 @@ myApp.controller('ProductController', function(ProductService) {
         } else if ((unit.unitMeasure == 'Cup')) {
             unit.cost_oz = unit.price / (unit.caseSize * 8);
         } else if ((unit.unitMeasure == 'Ounce')) {
-            unit.cost_oz = unit.price;
+            unit.cost_oz = unit.price / unit.caseSize;
         } else if ((unit.unitMeasure == 'Liter')) {
             unit.cost_oz = unit.price / (unit.caseSize * 33.814);
         } else if ((unit.unitMeasure == 'ml')) {
@@ -63,4 +65,4 @@ myApp.controller('ProductController', function(ProductService) {
 
     }
 
-});
+}]);
