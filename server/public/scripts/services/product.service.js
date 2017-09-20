@@ -4,6 +4,7 @@ myApp.service('ProductService', ['$http', function($http) {
 
     self.product = { list: [] };
     self.recipeProduct = {
+        id: '',
         product: '',
         price: '',
         vendor: '',
@@ -38,7 +39,7 @@ myApp.service('ProductService', ['$http', function($http) {
     // item selected from recipe.html search and binded to recipe view
     self.selectProduct = function(recipeProduct) {
         console.log('selectProduct hit', recipeProduct);
-        self.recipeProduct = recipeProduct;
+        self.recipeProduct.id = recipeProduct.id;
 
     };
 

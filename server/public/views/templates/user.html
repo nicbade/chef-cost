@@ -24,7 +24,18 @@
             <tbody>
                 <tr ng-class="{'hidden': !pc.toggle}" ng-repeat="recipe in rc.RecipeService.recipe.list | filter:query | filter: searchBox | orderBy: 'name'">
                     <td><input ng-model="recipe.name"></td>
-                    <td><input ng-model="recipe.type"></td>
+                    <td>
+                        <select name="yieldType" id="yieldType" class="form-control" ng-model="rc.recipe.type">
+                            <option value="gallon">Gallon</option>
+                            <option value="quart">Quart</option>
+                            <option value="pint">Pint</option>
+                            <option value="cup">Cup</option>
+                            <option value="tablespoon">Tbsp</option>
+                            <option value="teaspoon">tsp</option>
+                            <option value="ounce">Ounce</option>
+                            <option value="each">Each</option>
+                        </select>
+                    </td>
                     <td><input ng-model="recipe.yield"></td>
                     <td><input ng-model="recipe.yield_amount"></td>
                     <td><button class="btn btn-xs btn-info" ng-click="rc.updateRecipe(recipe)">Save</button></td>

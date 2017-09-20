@@ -7,6 +7,7 @@ myApp.controller('RecipeController', ['RecipeService', '$routeParams', function(
     self.currentRecipe = RecipeService.currentRecipe;
     RecipeService.getDetails($routeParams.id);
 
+
     RecipeService.getRecipe();
     // console.log(self.RecipeService);
     // adds recipe to db

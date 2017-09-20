@@ -37,7 +37,7 @@
                                                      <option id="ounce" ng-model="pc.newProduct.unitMeasure">Ounce</option>
                                                 </select>
                                 </td>
-                                <td><button class="btn btn-xs btn-info" ng-click="pc.selectProduct(product)">Select</button></td>
+                                <td><button class="btn btn-xs btn-info" ng-click="pc.selectProduct(product.id)">Select</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -54,7 +54,7 @@
                 </div>
                 <!-- products go here -->
                 <div>
-                    {{pc.recipeProduct.product}} {{pc.recipeProduct.amount}} {{pc.recipeProduct.unitMeasure}} {{pc.recipeProduct.cost_oz}}
+                    {{pc}} {{pc.newProduct.amount}} {{pc.newProduct.unitMeasure}}
                 </div>
             </div>
         </div>
