@@ -52,10 +52,10 @@
                         <td><a href="#" editable-product="product.product">{{product.product}}</a></td>
                         <td>{{product.product_number}}</td>
                         <td>{{product.vendor}}</td>
-                        <td>{{product.price | currency}}</td>
+                        <td>{{product.price}}</td>
                         <td>{{product.unit}}</td>
                         <td>{{product.unit_measure}}</td>
-                        <td>{{product.cost_oz | currency}}</td>
+                        <td>{{product.cost_oz}}</td>
                         <td><button class="btn btn-xs btn-info" ng-click="pc.openEdit(product); pc.currentProduct = product">Edit</button></td>
                         <td><button class="btn btn-xs btn-danger" ng-click="pc.deleteProduct(product.id)">Delete</button></td>
                     </tr>

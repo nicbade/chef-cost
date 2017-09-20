@@ -5,7 +5,7 @@ var pool = require('../modules/pool.js');
 // addProduct post route
 router.post('/', function(req, res) {
     var newRecipe = req.body;
-    console.log('addProduct post was hit!');
+    console.log('addRecipe post was hit!');
     pool.connect(function(errorConnectingToDatabase, client, done) {
         if (errorConnectingToDatabase) {
             //when connecting to database failed
