@@ -95,4 +95,27 @@ router.put('/:id', function(req, res) {
         }
     });
 });
+
+router.get('/details', function(req, res) {
+    pool.connect(function(errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('Error connecting to Database', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query('SELECT * FROM recipe WHERE id=$1', [req.query.id], function(errorMakingQuery, result) {
+                if (errorMakingQuery) {
+                    console.log('Error Making Query', errorMakingQuery);
+                    res.sendStatus(500);
+                } else {
+                    if (result.rows.length > 0) {
+                        res.send(result.rows[0]);
+                    } else {
+                        console.log('No recipe with that id');
+                        res.sendStatus(404);
+                    }
+                }
+            });
+        }
+    });
+});
 module.exports = router;

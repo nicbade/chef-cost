@@ -4,6 +4,8 @@ myApp.controller('RecipeController', ['RecipeService', '$routeParams', function(
     self.RecipeService = RecipeService;
     self.newRecipe = RecipeService.newRecipe;
     console.log('$routeParams ', $routeParams);
+    self.currentRecipe = RecipeService.currentRecipe;
+    RecipeService.getDetails($routeParams.id);
 
     RecipeService.getRecipe();
     // console.log(self.RecipeService);

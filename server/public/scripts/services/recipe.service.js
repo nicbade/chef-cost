@@ -33,10 +33,10 @@ myApp.service('RecipeService', ['$http', function($http) {
         });
     };
 
-    self.getDeets = function(recipeId) {
+    self.getDetails = function(recipeId) {
         $http({
-            mehtod: 'GET',
-            url: '/addRecipe/recipe',
+            method: 'GET',
+            url: '/addRecipe/details',
             params: {
                 id: recipeId
             }
