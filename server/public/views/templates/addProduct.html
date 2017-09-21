@@ -48,7 +48,30 @@
                 </thead>
 
                 <tbody>
-                    <tr ng-repeat="product in pc.ProductService.product.list | filter:query | filter: searchBox | orderBy: 'product'">
+                    <tr ng-class="{'hidden': !pc.toggle}" ng-repeat="product in pc.ProductService.product.list | filter:query | filter: searchBox | orderBy: 'product'">
+                        <td><input ng-model="product.product"></td>
+                        <td><input ng-model="product.product_number"></td>
+                        <td><input ng-model="product.vendor"></td>
+                        <td><input ng-model="product.price"></td>
+                        <td><input ng-model="product.unit"></td>
+                        <td>
+                            <select class="form-control" ng-model="product.unitMeasure">
+                                <option value="pound" >Pound</option>
+                                <option value="each" >Ea</option>
+                                <option value="gallon" >Gallon</option>
+                                <option value="quart" >Quart</option>
+                                <option value="pint" >Pint</option>
+                                <option value="cup" >Cup</option>                    <option value="ounce" >Ounce</option>
+                                <option value="liter" >Liter</option>
+                                <option value="ml" >ml</option>
+                                <option value="gram" >Gram</option>
+                           </select></td>
+                        <td><input ng-model="product.cost_oz"></td>
+                        <td><button class="btn btn-xs btn-info" ng-click="pc.updateProduct(product)">Save</button></td>
+                        <td><button class="btn btn-xs btn-danger" ng-if="pc.toggle" ng-click="pc.toggle = false">Cancel</button></td>
+                    </tr>
+
+                    <tr ng-class="{'hidden' : pc.toggle}" ng-repeat="product in pc.ProductService.product.list | filter:query | filter: searchBox | orderBy: 'product'">
                         <td><a href="#" editable-product="product.product">{{product.product}}</a></td>
                         <td>{{product.product_number}}</td>
                         <td>{{product.vendor}}</td>
@@ -56,7 +79,7 @@
                         <td>{{product.unit}}</td>
                         <td>{{product.unit_measure}}</td>
                         <td>{{product.cost_oz}}</td>
-                        <td><button class="btn btn-xs btn-info" ng-click="pc.openEdit(product); pc.currentProduct = product">Edit</button></td>
+                        <td><button class="btn btn-xs btn-info" ng-if="!pc.toggle" ng-click="pc.toggle = true">Edit</button></td>
                         <td><button class="btn btn-xs btn-danger" ng-click="pc.deleteProduct(product.id)">Delete</button></td>
                     </tr>
                 </tbody>

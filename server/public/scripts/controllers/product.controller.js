@@ -3,7 +3,8 @@ myApp.controller('ProductController', ['ProductService', 'RecipeService', '$rout
     var self = this;
     self.ProductService = ProductService;
     self.recipeProduct = ProductService.recipeProduct;
-    // console.log(self.recipeProduct);
+    self.toggle = false;
+
     ProductService.getProduct();
     self.newProduct = {
         product: '',
@@ -17,7 +18,7 @@ myApp.controller('ProductController', ['ProductService', 'RecipeService', '$rout
         created_at: ''
     };
 
-    self.toggle = false;
+
     // adds new products to the db
     self.addProduct = function() {
         console.log('addproduct button was clicked', self.newProduct);
@@ -31,9 +32,14 @@ myApp.controller('ProductController', ['ProductService', 'RecipeService', '$rout
         ProductService.deleteProduct(productId);
     };
     // adds a product to a recipe
-    self.selectProduct = function(product) {
-        console.log('selectProduct button was clicked', product);
+    self.selectProduct = function() {
+        console.log('selectProduct button was clicked', self.newProduct);
         ProductService.selectProduct(product);
+    };
+
+    self.updateProduct = function(productId) {
+        console.log('updateProduct button was clicked', productId);
+        ProductService.updateProduct(productId);
     };
     // trying to convert all of the unitmeasures to ounces ie. pounds = 16 oz  Easier to cost later
     recipeConvert = function(unitMeasure) {

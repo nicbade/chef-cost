@@ -74,7 +74,7 @@ router.delete('/:id', function(req, res) {
 
 router.put('/:id', function(req, res) {
     var recipeId = req.params.id;
-    console.log('message put was hit!', req.body);
+    // console.log('recipe put was hit!', req.body);
     pool.connect(function(errorConnectingToDatabase, client, done) {
         if (errorConnectingToDatabase) {
             // when connecting to database failed

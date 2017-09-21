@@ -6,22 +6,23 @@ myApp.controller('RecipeController', ['RecipeService', '$routeParams', function(
     console.log('$routeParams ', $routeParams);
     self.currentRecipe = RecipeService.currentRecipe;
     RecipeService.getDetails($routeParams.id);
+    self.toggle = false;
 
     RecipeService.getRecipe();
     // console.log(self.RecipeService);
     // adds recipe to db
     self.addRecipe = function() {
-        console.log('addRecipe button was clicked', self.newRecipe);
+        // console.log('addRecipe button was clicked', self.newRecipe);
         RecipeService.addRecipe(self.newRecipe);
     };
     // deletes recipe from db
     self.deleteRecipe = function(recipeId) {
-        console.log('deleteRecipe button clicked', recipeId)
+        // console.log('deleteRecipe button clicked', recipeId)
         RecipeService.deleteRecipe(recipeId);
     };
     // updates recipe to db
     self.updateRecipe = function(recipeId) {
-        console.log('updateRecipe button was clicked', recipeId);
+        // console.log('updateRecipe button was clicked', recipeId);
         RecipeService.updateRecipe(recipeId);
     }
 

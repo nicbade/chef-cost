@@ -11,23 +11,23 @@ myApp.service('RecipeService', ['$http', function($http) {
     };
 
     self.addRecipe = function(newRecipe) {
-        console.log(newRecipe);
+        // console.log(newRecipe);
         self.newRecipe = newRecipe;
         $http.post('/addRecipe', newRecipe).then(function(response) {
-            console.log('service post reponse: ', response);
+            // console.log('service post reponse: ', response);
             self.getRecipe();
         });
     };
 
     self.getRecipe = function() {
         $http.get('/addRecipe').then(function(response) {
-            console.log('getroute addRecipe: ', response.data);
+            // console.log('getroute addRecipe: ', response.data);
             self.recipe.list = response.data;
         });
     };
 
     self.deleteRecipe = function(recipeId) {
-        console.log('deleteRecipe hit', recipeId);
+        // console.log('deleteRecipe hit', recipeId);
         $http.delete('/addRecipe/' + recipeId).then(function(response) {
             self.getRecipe();
         });
@@ -46,7 +46,7 @@ myApp.service('RecipeService', ['$http', function($http) {
     };
 
     self.updateRecipe = function(recipeId) {
-        console.log('updateRecipe hit', recipeId);
+        // console.log('updateRecipe hit', recipeId);
         $http.put('/addRecipe/' + recipeId.id, recipeId).then(function(response) {
             self.getRecipe();
         });

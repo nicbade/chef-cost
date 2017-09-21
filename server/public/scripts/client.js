@@ -15,9 +15,7 @@ myApp.config(function($routeProvider, $locationProvider) {
         })
         .when('/user', {
             templateUrl: '/views/templates/user.html',
-            controller: 'RecipeController as rc',
             controller: 'UserController as uc',
-            controller: 'ProductController as pc',
             resolve: {
                 getuser: function(UserService) {
                     return UserService.getuser();
@@ -61,6 +59,15 @@ myApp.config(function($routeProvider, $locationProvider) {
         })
         .when('/recipeDisplay/:id', {
             templateUrl: '/views/templates/recipeDisplay.html',
+            controller: 'RecipeController as rc',
+            resolve: {
+                getuser: function(UserService) {
+                    return UserService.getuser();
+                }
+            }
+        })
+        .when('/dashboard', {
+            templateUrl: '/views/templates/dashboard.html',
             controller: 'RecipeController as rc',
             resolve: {
                 getuser: function(UserService) {

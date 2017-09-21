@@ -1,3 +1,5 @@
-<p>Recipe Display page</p>
-
-{{rc}}
+<div class="container">
+    <h3>{{rc.currentRecipe.details.name}}</h3>
+    <p>Type: {{rc.currentRecipe.details.type}}</p>
+    <p>Yield: {{rc.currentRecipe.details.yield}} {{rc.currentRecipe.details.yield_amount}}</p>
+</div>
