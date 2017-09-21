@@ -35,6 +35,12 @@ myApp.service('ProductService', ['$http', function($http) {
         });
     };
 
+    self.updateProduct = function(productId) {
+        // console.log('updateProduct hit', productId);
+        $http.put('/addProduct/' + productId.id, productId).then(function(response) {
+            self.getProduct();
+        })
+    };
 
     // item selected from recipe.html search and binded to recipe view
     self.selectProduct = function(recipeProduct) {

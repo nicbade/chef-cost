@@ -72,4 +72,28 @@ router.delete('/:id', function(req, res) {
         }
     });
 });
+
+router.put('/:id', function(req, res) {
+    var productId = req.params.id;
+    console.log('product put was hit!', req.body);
+    pool.connect(function(errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            // when connecting to database failed
+            console.log('Error connecting to database', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            // when connecting to database worked!
+            client.query('UPDATE product SET product=$1, product_number=$2, vendor=$3, price=$4, unit=$5, unit_measure=$6, cost_oz=$7 WHERE id=$8;', [req.body.product, req.body.product_number, req.body.vendor, req.body.price, req.body.unit, req.body.unit_measure, req.body.cost_oz, productId],
+                function(errorMakingQuery, result) {
+                    done();
+                    if (errorMakingQuery) {
+                        console.log('Error making database query', errorMakingQuery);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(200);
+                    }
+                });
+        }
+    });
+});
 module.exports = router;
