@@ -2,21 +2,23 @@ myApp.controller('ProductController', ['ProductService', 'RecipeService', '$rout
     console.log('ProductController created');
     var self = this;
     self.ProductService = ProductService;
+    self.RecipeService = RecipeService;
+
     self.recipeProduct = ProductService.recipeProduct;
     self.toggle = false;
 
     ProductService.getProduct();
-    self.newProduct = {
-        product: '',
-        productNumber: '',
-        price: '',
-        vendor: '',
-        caseSize: '',
-        unitMeasure: '',
-        cost_oz: '',
-        amount: '',
-        created_at: ''
-    };
+    // self.newProduct = {
+    //     product: '',
+    //     productNumber: '',
+    //     price: '',
+    //     vendor: '',
+    //     caseSize: '',
+    //     unitMeasure: '',
+    //     cost_oz: '',
+    //     amount: '',
+    //     created_at: ''
+    // };
 
 
     // adds new products to the db
@@ -33,13 +35,18 @@ myApp.controller('ProductController', ['ProductService', 'RecipeService', '$rout
     };
     // adds a product to a recipe
     self.selectProduct = function() {
-        console.log('selectProduct button was clicked', self.newProduct);
-        ProductService.selectProduct(product);
+        console.log('selectProduct button was clicked', self.recipeProduct);
+        ProductService.selectProduct(self.recipeProduct);
     };
 
+    // edit product on addProduct.html
     self.updateProduct = function(productId) {
         console.log('updateProduct button was clicked', productId);
+        // TESTING to see if it will convert the updated costs / oz
         ProductService.updateProduct(productId);
+        // recipeConvert();
+        // closes edit
+        self.toggle = false;
     };
     // trying to convert all of the unitmeasures to ounces ie. pounds = 16 oz  Easier to cost later
     recipeConvert = function(unitMeasure) {
@@ -67,7 +74,6 @@ myApp.controller('ProductController', ['ProductService', 'RecipeService', '$rout
         } else if ((unit.unitMeasure == 'Gram')) {
             unit.cost_oz = unit.price / (unit.caseSize * 0.035274)
         }
-
-    }
+    };
 
 }]);
