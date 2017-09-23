@@ -3,11 +3,7 @@ myApp.service('ProductService', ['$http', function($http) {
     var self = this;
 
     self.product = { list: [] };
-    self.recipeProduct = {
-        productId: '',
-        amount: '',
-        unit_measure: ''
-    };
+
 
     // sending new product input to server
     self.addProduct = function(newProduct) {

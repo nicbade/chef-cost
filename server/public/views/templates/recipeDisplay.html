@@ -1,14 +1,39 @@
 <div class="container">
+
+    <!-- <div ng-repeat="product in pc.ProductService.product.list"> -->
+    <!-- {{pc}} -->
+    <!-- <label>{{product.product}}</label> -->
+    <div class="container">
+        <form>
+            <div class="form-group">
+                <label for="productInput">Product</label>
+                <select value="productInput" class="form-control" ng-model="pc.currentProduct.product" ng-options="product.product for product in pc.ProductService.product.list"></select>
+            </div>
+            <div class="form-group">
+                <label for="amountInput">Amount</label>
+                <input type="number" placeholder="Amount" ng-model="pc.currentProduct.amount">
+            </div>
+            <div>
+                <label for="unitMeasureInput">Unit Measure</label>
+                <select class="form-control" ng-model="pc.currentProduct.unitMeasure">
+                                                 <option value="pound">Pound</option>
+                                                 <option value="each">Ea</option>
+                                                 <option value="gallon">Gallon</option>
+                                                 <option value="quart">Quart</option>
+                                                 <option value="pint">Pint</option>
+                                                 <option value="pint">Cup</option>
+                                                 <option value="pint">Tbsp</option>
+                                                 <option value="pint">tsp</option>
+                                                 <option value="ounce">Ounce</option>
+                                            </select>
+            </div>
+            <button type="submit" class="btn btn-sm btn-primary" ng-click="pc.addProductToRecipe()">Add To Recipe</button>
+
+        </form>
+    </div>
     <div ng-controller="RecipeController as rc">
         <h3>{{rc.currentRecipe.details.name}}</h3>
         <p>Type: {{rc.currentRecipe.details.type}}</p>
         <p>Yield: {{rc.currentRecipe.details.yield}} {{rc.currentRecipe.details.yield_amount}}</p>
     </div>
-    <!-- <div ng-repeat="product in pc.ProductService.product.list"> -->
-    <!-- {{pc}} -->
-    <!-- <label>{{product.product}}</label> -->
-    <select ng-model="currentProduct" ng-options="product.product for product in pc.ProductService.product.list">
-
-        </select>
-    <!-- </div> -->
 </div>

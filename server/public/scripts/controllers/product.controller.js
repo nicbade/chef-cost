@@ -8,17 +8,23 @@ myApp.controller('ProductController', ['ProductService', 'RecipeService', '$rout
     self.toggle = false;
 
     ProductService.getProduct();
-    // self.newProduct = {
-    //     product: '',
-    //     productNumber: '',
-    //     price: '',
-    //     vendor: '',
-    //     caseSize: '',
-    //     unitMeasure: '',
-    //     cost_oz: '',
-    //     amount: '',
-    //     created_at: ''
-    // };
+    self.currentProduct = {
+            product: '',
+            amount: '',
+            unitMeasure: '',
+            product_cost: ''
+        }
+        // self.newProduct = {
+        //     product: '',
+        //     productNumber: '',
+        //     price: '',
+        //     vendor: '',
+        //     caseSize: '',
+        //     unitMeasure: '',
+        //     cost_oz: '',
+        //     amount: '',
+        //     created_at: ''
+        // };
 
 
     // adds new products to the db
@@ -34,9 +40,10 @@ myApp.controller('ProductController', ['ProductService', 'RecipeService', '$rout
         ProductService.deleteProduct(productId);
     };
     // adds a product to a recipe
-    self.selectProduct = function() {
-        console.log('selectProduct button was clicked', self.recipeProduct);
-        ProductService.selectProduct(self.recipeProduct);
+    self.addProductToRecipe = function() {
+        console.log('add product button was clicked', self.currentProduct)
+            // ProductService.addProductToRecipe(self.currentProduct);
+
     };
 
     // edit product on addProduct.html
