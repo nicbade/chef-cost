@@ -1,22 +1,20 @@
-myApp.service('RecipeService', ['$http', function($http) {
+myApp.service('RecipeService', ['$http', '$location', function($http, $location) {
     console.log('RecipeService loaded');
     var self = this;
     self.recipe = { list: [] };
     self.currentRecipe = { details: {} };
-    self.newRecipe = {
-        name: '',
-        type: '',
-        yield: '',
-        yield_amount: ''
-    };
+
 
     self.addRecipe = function(newRecipe) {
         // console.log(newRecipe);
         self.newRecipe = newRecipe;
         $http.post('/addRecipe', newRecipe).then(function(response) {
-            // console.log('service post reponse: ', response);
-            self.getRecipe();
+            console.log('service post reponse: ', response.data);
+
+            // self.getDetails();
+            $location.path("recipeDisplay/" + response.data.rows[0].id);
         });
+
     };
 
     self.getRecipe = function() {

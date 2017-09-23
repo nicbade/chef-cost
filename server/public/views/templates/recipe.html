@@ -1,64 +1,62 @@
-<div class="container">
-    <div ng-controller="RecipeController as rc">
-        <div class="row" ng-controller="ProductController as pc">
-            <div ng-repeat="product in pc.ProductService.product.list | filter: searchBox | limitTo: 1">
-                <label for="ingredient">Add product to recipe</label>
-                <div class="container">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <input type="text" ng-model="searchBox" placeholder="Search Products">
-                                </th>
-                            </tr>
-                            <tr>
-                                <th>Product</th>
-                                <th>Vendor</th>
-                                <th>Amount</th>
-                                <th>Unit Measure</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="product in pc.ProductService.product.list | filter:query | filter: searchBox | orderBy: 'product' | limitTo:1">
-                                <td><a href="#" editable-product="product.product">{{product.product}}</a></td>
-                                <td>{{product.vendor}}</td>
-                                <td><input type="number" id="amount" placeholder="Amount" ng-model="pc.newProduct.amount"></td>
-                                <td>
-                                    <select name="caseMeasurement" id="caseMeasurement" class="form-control" ng-model="pc.newProduct.unitMeasure">
-                                                     <option id="pound" ng-model="pc.newProduct.unitMeasure">Pound</option>
-                                                     <option id="each" ng-model="pc.newProduct.unitMeasure">Ea</option>
-                                                     <option id="gallon" ng-model="pc.newProduct.unitMeasure">Gallon</option>
-                                                     <option id="quart" ng-model="pc.newProduct.unitMeasure">Quart</option>
-                                                     <option id="pint" ng-model="pc.newProduct.unitMeasure">Pint</option>
-                                                     <option id="pint" ng-model="pc.newProduct.unitMeasure">Cup</option>
-                                                     <option id="pint" ng-model="pc.newProduct.unitMeasure">Tbsp</option>
-                                                     <option id="pint" ng-model="pc.newProduct.unitMeasure">tsp</option>
-                                                     <option id="ounce" ng-model="pc.newProduct.unitMeasure">Ounce</option>
+<div class="container" ng-controller="ProductController as pc">
+    <div class="row" ng-repeat="product in pc.ProductService.product.list | filter: searchBox | limitTo: 1">
+        <label for="ingredient">Add product to recipe</label>
+        <div class="container">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="text" ng-model="searchBox" placeholder="Search Products">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Product</th>
+                        <th>Vendor</th>
+                        <th>Amount</th>
+                        <th>Unit Measure</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- search product from the service.  select it then pull id from it and send to db recipe_products table -->
+                    <tr ng-repeat="product in pc.ProductService.product.list | filter:query | filter: searchBox | orderBy: 'product' | limitTo:1">
+                        <td ng-model="pc.recipeProduct.product">{{product.product}}</td>
+                        <td ng-model="pc.recipeProduct.vendor">{{product.vendor}}</td>
+                        <td><input type="number" id="amount" placeholder="Amount" ng-model="pc.recipeProduct.amount"></td>
+                        <td>
+                            <select name="caseMeasurement" id="caseMeasurement" class="form-control" ng-model="pc.recipeProduct.unitMeasure">
+                                                     <option id="pound">Pound</option>
+                                                     <option id="each">Ea</option>
+                                                     <option id="gallon">Gallon</option>
+                                                     <option id="quart">Quart</option>
+                                                     <option id="pint">Pint</option>
+                                                     <option id="pint">Cup</option>
+                                                     <option id="pint">Tbsp</option>
+                                                     <option id="pint">tsp</option>
+                                                     <option id="ounce">Ounce</option>
                                                 </select>
-                                </td>
-                                <td><button class="btn btn-xs btn-info" ng-click="pc.selectProduct(product.id)">Select</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                        </td>
+                        <td><button class="btn btn-xs btn-info" ng-click="pc.selectProduct(recipeProduct)">Select</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 
-            <div class="container rounded well">
-                <div class="row justify-content-md-center">
-                    <!-- RECIPE INFO FROM ADDRECIPE HTML -->
-                    <div id="recipeName" class="col">{{rc.newRecipe.name}}</div>
-                    <div class="col">{{rc.newRecipe.type}}</div>
-                    <div class="col">{{rc.newRecipe.yield}} {{rc.newRecipe.yield_amount}}</div>
-                </div>
-                <!-- products go here -->
-                <div>
-                    <p>{{pc.newProduct.amount}} {{pc.newProduct.unitMeasure}}</p>
+    <div class="container rounded well">
+        <div class="row justify-content-md-center" ng-repeat="display in rc.RecipeService.recipe.list | orderBy: '-id' | limitTo:1">
+            <!-- RECIPE INFO FROM ADDRECIPE HTML -->
+            <!-- {{rc.RecipeService.recipe.list}} -->
+            <div id="recipeName" class="col">{{display.name}}</div>
+            <div class="col">{{display.type}}</div>
+            <div class="col">{{display.yield}} {{display.yield_amount}}</div>
+        </div>
+        <!-- products go here -->
+        <div>
+            <!-- <p>{{pc.newProduct.product}} {{pc.newProduct.amount}} {{pc.newProduct.unitMeasure}} {{pc.newProduct.cost_oz}}</p> -->
 
-                    {{pc}}
-                </div>
-            </div>
+            <!-- {{pc}} -->
         </div>
     </div>
 </div>

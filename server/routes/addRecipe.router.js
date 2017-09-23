@@ -13,13 +13,13 @@ router.post('/', function(req, res) {
             res.sendStatus(500);
         } else {
             // when connecting to database worked aka HAPPYPATH!
-            client.query('INSERT INTO recipe (name, type, yield, yield_amount) VALUES ($1, $2, $3, $4);', [newRecipe.name, newRecipe.type, newRecipe.yield, newRecipe.yield_amount], function(errorMakingQuery, result) {
+            client.query('INSERT INTO recipe (name, type, yield, yield_amount) VALUES ($1, $2, $3, $4) RETURNING id;', [newRecipe.name, newRecipe.type, newRecipe.yield, newRecipe.yield_amount], function(errorMakingQuery, result) {
                 done(); //needed
                 if (errorMakingQuery) {
                     console.log('Error making database query', errorMakingQuery);
                     res.sendStatus(500);
                 } else {
-                    res.sendStatus(201);
+                    res.send(result);
                 }
             }); // end client.query
         }
@@ -118,4 +118,5 @@ router.get('/details', function(req, res) {
         }
     });
 });
+
 module.exports = router;

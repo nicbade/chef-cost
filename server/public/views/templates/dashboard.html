@@ -21,19 +21,28 @@
             <tr ng-class="{'hidden': !rc.toggle}" ng-repeat="recipe in rc.RecipeService.recipe.list | filter:query | filter: searchBox | orderBy: 'name'">
                 <td><input ng-model="recipe.name"></td>
                 <td>
-                    <select name="yieldType" id="yieldType" class="form-control" ng-model="rc.recipe.type">
-                            <option value="gallon">Gallon</option>
-                            <option value="quart">Quart</option>
-                            <option value="pint">Pint</option>
-                            <option value="cup">Cup</option>
-                            <option value="tablespoon">Tbsp</option>
-                            <option value="teaspoon">tsp</option>
-                            <option value="ounce">Ounce</option>
-                            <option value="each">Each</option>
-                        </select>
+                    <select name="recipeType" id="recipeType" class="form-control col-md-3" ng-model="rc.newRecipe.type">
+                                <option id="beef" ng-model="rc.newRecipe.type">Beef</option>
+                                <option id="chicken" ng-model="rc.newRecipe.type">Chicken</option>
+                                <option id="pork" ng-model="rc.newRecipe.type">Pork</option>
+                                <option id="seafood" ng-model="rc.newRecipe.type">Seafood</option>
+                                <option id="sauce" ng-model="rc.newRecipe.type">Sauce</option>
+                                <option id="sweet" ng-model="rc.newRecipe.type">Sweet</option>
+                                <option id="vegetarian" ng-model="rc.newRecipe.type">Vegetarian</option>
+                                <option id="misc" ng-model="rc.newRecipe.type">Misc</option>
+                                </select>
                 </td>
                 <td><input ng-model="recipe.yield"></td>
-                <td><input ng-model="recipe.yield_amount"></td>
+                <td> <select name="yieldType" id="yieldType" class="form-control col-md-3" ng-model="rc.newRecipe.yield_amount">
+                        <option id="gallon" ng-model="rc.newRecipe.yield_amount">Gallon</option>
+                        <option id="quart" ng-model="rc.newRecipe.yield_amount">Quart</option>
+                        <option id="pint" ng-model="rc.newRecipe.yield_amount">Pint</option>
+                        <option id="cup" ng-model="rc.newRecipe.yield_amount">Cup</option>
+                        <option id="tablespoon" ng-model="rc.newRecipe.yield_amount">Tbsp</option>
+                        <option id="teaspoon" ng-model="rc.newRecipe.yield_amount">tsp</option>
+                        <option id="ounce" ng-model="rc.newRecipe.yield_amount">Ounce</option>
+                        <option id="each" ng-model="rc.newRecipe.yield_amount">Each</option>
+                </select></td>
                 <td><button class="btn btn-xs btn-info" ng-click="rc.updateRecipe(recipe)">Save</button></td>
                 <td><button class="btn btn-xs btn-danger" ng-if="rc.toggle" ng-click="rc.toggle = false">Cancel</button></td>
             </tr>
