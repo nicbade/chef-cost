@@ -27,6 +27,32 @@ router.post('/', function(req, res) {
     }); // end pool.connect
 }); // end post route
 
+router.post('/recipeProduct', function(req, res) {
+    var recipeProduct = req.body;
+    console.log('req.params', req.params);
+    console.log('req.query', req.query);
+    console.log('recipeProduct post hit', recipeProduct, recipeProduct.id)
+    pool.connect(function(errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            //when connecting to database failed
+            console.log('Error connecting to database', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            // when connecting to database worked aka HAPPYPATH!
+            client.query('INSERT INTO recipe_products (product_id, recipe_id, recipe_amount, amount_type, product_cost) VALUES ($1, $2, $3, $4, $5);', [recipeProduct.product.id, recipeProduct.recipeId.id, recipeProduct.amount, recipeProduct.unitMeasure, recipeProduct.product_cost], function(errorMakingQuery, result) {
+                done(); //needed
+                if (errorMakingQuery) {
+                    console.log('Error making database query', errorMakingQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.sendStatus(201);
+                }
+            }); // end client.query
+        }
+    }); // end pool.connect
+}); // end post route
+
+
 router.get('/', function(req, res) {
     pool.connect(function(err, db, done) {
         if (err) {
