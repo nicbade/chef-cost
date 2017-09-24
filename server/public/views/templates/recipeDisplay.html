@@ -7,7 +7,7 @@
         <form>
             <div class="form-group">
                 <label for="productInput">Product</label>
-                <select value="productInput" class="form-control" ng-model="pc.currentProduct.product" ng-options="product.product for product in pc.ProductService.product.list"></select>
+                <select value="productInput" class="form-control" ng-model="pc.currentProduct.product" ng-options="product.product for product in pc.ProductService.product.list | orderBy:'product'"></select>
             </div>
             <div class="form-group">
                 <label for="amountInput">Amount</label>
@@ -38,9 +38,10 @@
     </div>
     <div class="container">
 
-        {{pc.ProductService.recipeProduct}}
-        <div class="row" ng-repeat="product in pc.productService.recipeProduct | orderBy: 'recipe_id'">
-            <!-- <p>{{product}}</p> -->
+
+        <div class="row" ng-repeat="display in pc.ProductService.recipeProduct.list">
+            <p>{{display.recipe_amount}} {{display.amount_type}} {{display.product}} {{display.product_cost}}</p>
         </div>
+        <!-- {{pc.ProductService.product}} -->
     </div>
 </div>
