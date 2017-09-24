@@ -1,4 +1,4 @@
-myApp.service('ProductService', ['$http', function($http) {
+myApp.service('ProductService', ['$http', '$routeParams', function($http, $routeParams) {
     console.log('productService loaded');
     var self = this;
 
@@ -11,6 +11,14 @@ myApp.service('ProductService', ['$http', function($http) {
         $http.post('/addProduct', newProduct).then(function(response) {
             console.log('service post reponse: ', response);
             self.getProduct();
+        });
+    };
+
+    // adding amount to product to bring recipe together
+    self.addProductToRecipe = function(productId) {
+        console.log(productId);
+        $http.post('/addProduct/recipeProduct', productId).then(function(response) {
+            console.log(response);
         });
     };
 

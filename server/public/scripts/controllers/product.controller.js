@@ -3,29 +3,16 @@ myApp.controller('ProductController', ['ProductService', 'RecipeService', '$rout
     var self = this;
     self.ProductService = ProductService;
     self.RecipeService = RecipeService;
-
-    self.recipeProduct = ProductService.recipeProduct;
+    // self.recipeProduct = ProductService.recipeProduct;
     self.toggle = false;
 
     ProductService.getProduct();
     self.currentProduct = {
-            product: '',
-            amount: '',
-            unitMeasure: '',
-            product_cost: ''
-        }
-        // self.newProduct = {
-        //     product: '',
-        //     productNumber: '',
-        //     price: '',
-        //     vendor: '',
-        //     caseSize: '',
-        //     unitMeasure: '',
-        //     cost_oz: '',
-        //     amount: '',
-        //     created_at: ''
-        // };
-
+        recipeId: $routeParams,
+        amount: '',
+        unitMeasure: '',
+        product_cost: {}
+    };
 
     // adds new products to the db
     self.addProduct = function() {
@@ -39,27 +26,39 @@ myApp.controller('ProductController', ['ProductService', 'RecipeService', '$rout
     self.deleteProduct = function(productId) {
         ProductService.deleteProduct(productId);
     };
+
     // adds a product to a recipe
     self.addProductToRecipe = function() {
-        console.log('add product button was clicked', self.currentProduct)
-            // ProductService.addProductToRecipe(self.currentProduct);
-
+        console.log('add product button was clicked', self.currentProduct, $routeParams)
+        productCost();
+        ProductService.addProductToRecipe(self.currentProduct);
+        self.currentProduct = {};
     };
 
     // edit product on addProduct.html
     self.updateProduct = function(productId) {
         console.log('updateProduct button was clicked', productId);
-        // TESTING to see if it will convert the updated costs / oz
         ProductService.updateProduct(productId);
-        // recipeConvert();
-        // closes edit
         self.toggle = false;
     };
+    // MATH FOR SPECIFIC RECIPE COSTS
+    productCost = function(unitMeasure) {
+        var cost = self.currentProduct;
+        console.log(cost);
+        if ((cost.unitMeasure == 'pound')) {
+            cost.product_cost = parseInt(cost.product.cost_oz * 16) * cost.amount;
+        } else if ((unit.unitMeasure == 'ea')) {
+            cost.product_cost = parseInt(cost.product.cost_oz * cost.amount);
+        }
+
+
+    };
+
     // trying to convert all of the unitmeasures to ounces ie. pounds = 16 oz  Easier to cost later
     recipeConvert = function(unitMeasure) {
-        console.log('recipeConvert called');
-        var unit = self.newProduct
-        console.log('unit.unitMeasure', unit.unitMeasure);
+        // console.log('recipeConvert called');
+        var unit = self.newProduct;
+        // console.log('unit.unitMeasure', unit.unitMeasure);
         if ((unit.unitMeasure == 'Pound')) {
             unit.cost_oz = unit.price / (unit.caseSize * 16);
         } else if ((unit.unitMeasure == 'Ea')) {
