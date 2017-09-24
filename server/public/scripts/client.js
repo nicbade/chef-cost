@@ -75,6 +75,15 @@ myApp.config(function($routeProvider, $locationProvider) {
                 }
             }
         })
+        .when('/technology', {
+            templateUrl: '/views/templates/technology.html',
+            controller: 'RecipeController as rc',
+            resolve: {
+                getuser: function(UserService) {
+                    return UserService.getuser();
+                }
+            }
+        })
         .otherwise({
             redirectTo: '/home'
         });
