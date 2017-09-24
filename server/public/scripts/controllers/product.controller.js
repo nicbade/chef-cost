@@ -48,7 +48,7 @@ myApp.controller('ProductController', ['ProductService', 'RecipeService', '$rout
         // console.log(cost);
         if ((cost.unitMeasure == 'pound')) {
             cost.product_cost = parseInt(cost.product.cost_oz * 16) * cost.amount;
-        } else if ((unit.unitMeasure == 'ea')) {
+        } else if ((cost.unitMeasure == 'ea')) {
             cost.product_cost = parseInt(cost.product.cost_oz * cost.amount);
         }
 

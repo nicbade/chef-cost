@@ -29,7 +29,9 @@ myApp.service('ProductService', ['$http', '$routeParams', function($http, $route
         $http.get('/addProduct/recipeProduct').then(function(response) {
             console.log('get route addProduct/RecipeProduct', response);
             self.recipeProduct.list = response.data;
-        })
+            self.filterProduct();
+            // self.recipeProduct.list = response.data;
+        });
     };
 
     // gets product to addProduct.html
@@ -62,4 +64,11 @@ myApp.service('ProductService', ['$http', '$routeParams', function($http, $route
 
     };
 
+    self.filterProduct = function(recipeProduct) {
+        // console.log('filterProduct hit');
+        // console.log($routeParams);
+        if (self.recipeProduct.recipe_id == $routeParams.id) {
+            self.recipeProduct.list = response.data;
+        }
+    };
 }]);

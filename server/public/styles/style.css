@@ -6,6 +6,12 @@ html {
     font-size: 14px;
 }
 
+#header {
+    background-image: url("kirsty-hughes-108515.jpg");
+    background-size: cover;
+    text-shadow: 1px 1px #383636;
+}
+
 .hidden {
     display: none;
 }
