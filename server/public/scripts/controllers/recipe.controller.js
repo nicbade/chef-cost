@@ -38,6 +38,4 @@ myApp.controller('RecipeController', ['RecipeService', 'ProductService', '$route
     };
 
 
-
-
 }]);

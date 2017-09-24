@@ -16,7 +16,7 @@ myApp.controller('ProductController', ['ProductService', 'RecipeService', '$rout
 
     // adds new products to the db
     self.addProduct = function() {
-        console.log('addproduct button was clicked', self.newProduct);
+        // console.log('addproduct button was clicked', self.newProduct);
         recipeConvert();
         ProductService.addProduct(self.newProduct);
         self.newProduct = {};
@@ -32,19 +32,20 @@ myApp.controller('ProductController', ['ProductService', 'RecipeService', '$rout
         console.log('add product button was clicked', self.currentProduct, $routeParams)
         productCost();
         ProductService.addProductToRecipe(self.currentProduct);
+        ProductService.getProductRecipe();
         self.currentProduct = {};
     };
 
     // edit product on addProduct.html
     self.updateProduct = function(productId) {
-        console.log('updateProduct button was clicked', productId);
+        // console.log('updateProduct button was clicked', productId);
         ProductService.updateProduct(productId);
         self.toggle = false;
     };
     // MATH FOR SPECIFIC RECIPE COSTS
     productCost = function(unitMeasure) {
         var cost = self.currentProduct;
-        console.log(cost);
+        // console.log(cost);
         if ((cost.unitMeasure == 'pound')) {
             cost.product_cost = parseInt(cost.product.cost_oz * 16) * cost.amount;
         } else if ((unit.unitMeasure == 'ea')) {

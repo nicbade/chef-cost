@@ -29,9 +29,9 @@ router.post('/', function(req, res) {
 
 router.post('/recipeProduct', function(req, res) {
     var recipeProduct = req.body;
-    console.log('req.params', req.params);
-    console.log('req.query', req.query);
-    console.log('recipeProduct post hit', recipeProduct, recipeProduct.id)
+    // console.log('req.params', req.params);
+    // console.log('req.query', req.query);
+    // console.log('recipeProduct post hit', recipeProduct, recipeProduct.id)
     pool.connect(function(errorConnectingToDatabase, client, done) {
         if (errorConnectingToDatabase) {
             //when connecting to database failed
@@ -52,6 +52,27 @@ router.post('/recipeProduct', function(req, res) {
     }); // end pool.connect
 }); // end post route
 
+router.get('/recipeProduct', function(req, res) {
+    pool.connect(function(err, db, done) {
+        if (err) {
+            console.log('Error connecting to the DB', err);
+            res.sendStatus(500);
+            done();
+            return;
+        } // end error
+        else {
+            db.query('SELECT recipe_products.recipe_id, recipe.name, recipe_products.recipe_amount, recipe_products.amount_type, product.product, recipe_products.product_cost FROM recipe_products LEFT JOIN recipe ON recipe.id = recipe_products.recipe_id LEFT JOIN product ON recipe_products.product_id = product.id;', function(errorMakingQuery, result) {
+                done();
+                if (errorMakingQuery) {
+                    console.log('Error making database query', errorMakingQuery);
+                    res.sendStatus(500);
+                } else {
+                    res.send(result.rows);
+                } // end if statement
+            });
+        } // end no error
+    }); // end pool connect
+}); // end get 
 
 router.get('/', function(req, res) {
     pool.connect(function(err, db, done) {
