@@ -11,8 +11,9 @@ myApp.controller('ProductController', ['ProductService', 'RecipeService', '$rout
         recipeId: $routeParams,
         amount: '',
         unitMeasure: '',
-        product_cost: ''
+        product_cost: {}
     };
+
     // adds new products to the db
     self.addProduct = function() {
         console.log('addproduct button was clicked', self.newProduct);
@@ -45,8 +46,12 @@ myApp.controller('ProductController', ['ProductService', 'RecipeService', '$rout
         var cost = self.currentProduct;
         console.log(cost);
         if ((cost.unitMeasure == 'pound')) {
-            cost.product_cost = parseInt(cost.product.cost_oz) * (parseInt(cost.unitMeasure * 16) * cost.amount);
+            cost.product_cost = parseInt(cost.product.cost_oz * 16) * cost.amount;
+        } else if ((unit.unitMeasure == 'ea')) {
+            cost.product_cost = parseInt(cost.product.cost_oz * cost.amount);
         }
+
+
     };
 
     // trying to convert all of the unitmeasures to ounces ie. pounds = 16 oz  Easier to cost later
