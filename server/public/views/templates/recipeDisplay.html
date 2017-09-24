@@ -36,4 +36,11 @@
         <p>Type: {{rc.currentRecipe.details.type}}</p>
         <p>Yield: {{rc.currentRecipe.details.yield}} {{rc.currentRecipe.details.yield_amount}}</p>
     </div>
+    <div class="container">
+
+        {{pc.ProductService.recipeProduct}}
+        <div class="row" ng-repeat="product in pc.productService.recipeProduct | orderBy: 'recipe_id'">
+            <!-- <p>{{product}}</p> -->
+        </div>
+    </div>
 </div>
