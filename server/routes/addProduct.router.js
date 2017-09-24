@@ -61,7 +61,7 @@ router.get('/recipeProduct', function(req, res) {
             return;
         } // end error
         else {
-            db.query('SELECT recipe_products.recipe_id, recipe.name, recipe_products.recipe_amount, recipe_products.amount_type, product.product, recipe_products.product_cost FROM recipe_products LEFT JOIN recipe ON recipe.id = recipe_products.recipe_id LEFT JOIN product ON recipe_products.product_id = product.id;', function(errorMakingQuery, result) {
+            db.query('SELECT recipe_products.recipe_id, recipe.name, recipe_products.recipe_amount, recipe_products.amount_type, product.product, recipe_products.product_cost FROM recipe_products LEFT JOIN recipe ON recipe.id = recipe_products.recipe_id LEFT JOIN product ON recipe_products.product_id = product.id ORDER BY recipe_id;', function(errorMakingQuery, result) {
                 done();
                 if (errorMakingQuery) {
                     console.log('Error making database query', errorMakingQuery);
