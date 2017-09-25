@@ -7,9 +7,12 @@ html {
 }
 
 #header {
-    background-image: url("kirsty-hughes-108515.jpg");
+    background-image: url("austin-moncada-186841.jpg");
     background-size: cover;
-    text-shadow: 1px 1px #383636;
+}
+
+#recipeDisplay {
+    margin: 5%;
 }
 
 .hidden {

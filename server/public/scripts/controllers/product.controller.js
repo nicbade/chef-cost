@@ -5,6 +5,8 @@ myApp.controller('ProductController', ['ProductService', 'RecipeService', '$rout
     self.RecipeService = RecipeService;
     // self.recipeProduct = ProductService.recipeProduct;
     self.toggle = false;
+    // console.log($routeParams);
+    self.slug = $routeParams.id;
 
     ProductService.getProduct();
     self.currentProduct = {
@@ -49,6 +51,20 @@ myApp.controller('ProductController', ['ProductService', 'RecipeService', '$rout
         if ((cost.unitMeasure == 'pound')) {
             cost.product_cost = parseInt(cost.product.cost_oz * 16) * cost.amount;
         } else if ((cost.unitMeasure == 'ea')) {
+            cost.product_cost = parseInt(cost.product.cost_oz * cost.amount);
+        } else if ((cost.unitMeasure == 'gallon')) {
+            cost.product_cost = parseInt(cost.product.cost_oz * 128) * cost.amount;
+        } else if ((cost.unitMeasure == 'quart')) {
+            cost.product_cost = parseInt(cost.product.cost_oz * 32) * cost.amount;
+        } else if ((cost.unitMeasure == 'pint')) {
+            cost.product_cost = parseInt(cost.product.cost_oz * 16) * cost.amount;
+        } else if ((cost.unitMeasure == 'cup')) {
+            cost.product_cost = parseInt(cost.product.cost_oz * 8) * cost.amount;
+        } else if ((cost.unitMeasure == 'tbsp')) {
+            cost.product_cost = parseInt(cost.product.cost_oz * .5) * cost.amount;
+        } else if ((cost.unitMeasure == 'tsp')) {
+            cost.product_cost = parseInt(cost.product.cost_oz * 0.166667) * cost.amount;
+        } else if ((cost.unitMeasure == 'ounce')) {
             cost.product_cost = parseInt(cost.product.cost_oz * cost.amount);
         }
 

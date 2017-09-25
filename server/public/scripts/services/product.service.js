@@ -24,9 +24,9 @@ myApp.service('ProductService', ['$http', '$routeParams', function($http, $route
     };
 
     // DISPLAYS RECIPE ON ROUTE PARAMS
-    self.getProductRecipe = function() {
+    self.getProductRecipe = function(id) {
         console.log('getProductRECIPE HIT');
-        $http.get('/addProduct/recipeProduct').then(function(response) {
+        $http.get('/addProduct/recipeProduct/' + id).then(function(response) {
             console.log('get route addProduct/RecipeProduct', response);
             self.recipeProduct.list = response.data;
             self.filterProduct();

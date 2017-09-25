@@ -3,7 +3,7 @@
     <!-- <div ng-repeat="product in pc.ProductService.product.list"> -->
     <!-- {{pc}} -->
     <!-- <label>{{product.product}}</label> -->
-    <div class="container">
+    <div id="recipeDisplay">
         <form>
             <div class="form-group">
                 <label for="productInput">Product</label>
@@ -21,9 +21,9 @@
                                                  <option value="gallon">Gallon</option>
                                                  <option value="quart">Quart</option>
                                                  <option value="pint">Pint</option>
-                                                 <option value="pint">Cup</option>
-                                                 <option value="pint">Tbsp</option>
-                                                 <option value="pint">tsp</option>
+                                                 <option value="cup">Cup</option>
+                                                 <option value="tbsp">Tbsp</option>
+                                                 <option value="tsp">tsp</option>
                                                  <option value="ounce">Ounce</option>
                                             </select>
             </div>
@@ -31,17 +31,20 @@
 
         </form>
     </div>
-    <div ng-controller="RecipeController as rc">
-        <h3>{{rc.currentRecipe.details.name}}</h3>
-        <p>Type: {{rc.currentRecipe.details.type}}</p>
-        <p>Yield: {{rc.currentRecipe.details.yield}} {{rc.currentRecipe.details.yield_amount}}</p>
-    </div>
-    <div class="container">
-
-
-        <div class="row" ng-repeat="display in pc.ProductService.recipeProduct.list">
-            <p>{{display.recipe_amount}} {{display.amount_type}} {{display.product}} {{display.product_cost}}</p>
+    <div class="container well">
+        <div ng-controller="RecipeController as rc">
+            <h3>{{rc.currentRecipe.details.name}}</h3>
+            <p>Type: {{rc.currentRecipe.details.type}}</p>
+            <p>Yield: {{rc.currentRecipe.details.yield}} {{rc.currentRecipe.details.yield_amount}}</p>
         </div>
-        <!-- {{pc.ProductService.product}} -->
+        <div class="container">
+            {{pc.slug}}
+
+            <div class="row" ng-repeat="display in pc.ProductService.recipeProduct.list | filter: pc.slug">
+
+                <p>{{display.recipe_id}} AMOUNT: {{display.recipe_amount}} {{display.amount_type}} {{display.product}} {{display.product_cost | currency}}</p>
+            </div>
+            <!-- {{pc.ProductService.product}} -->
+        </div>
     </div>
 </div>

@@ -52,7 +52,8 @@ router.post('/recipeProduct', function(req, res) {
     }); // end pool.connect
 }); // end post route
 
-router.get('/recipeProduct', function(req, res) {
+router.get('/recipeProduct/:id', function(req, res) {
+    recipeId = req.params.id;
     pool.connect(function(err, db, done) {
         if (err) {
             console.log('Error connecting to the DB', err);
